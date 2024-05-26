@@ -24,7 +24,7 @@ const LoginPage: React.FC = () => {
     } = useForm<FormValues>();
 
     const onSubmit: SubmitHandler<FormValues> = async (data) => {
-        const resultAction: = await dispatch(loginAsync(data));
+        const resultAction = await dispatch(loginAsync(data));
         if (loginAsync.fulfilled.match(resultAction)) {
             navigate('/profile');
         }
