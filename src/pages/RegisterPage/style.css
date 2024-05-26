@@ -1,0 +1,62 @@
+.register_page_div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.register_page_div > h2 {
+    font-size: 30px;
+    color: mediumslateblue;
+}
+
+.register_page_div > form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.register_inputs_div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.register_inputs_div label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.register_inputs_div label > p {
+    color: red;
+}
+
+.register_inputs_div label input {
+    width: 300px;
+    height: 30px;
+    padding: 10px;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    border-bottom: 1px solid ;
+    border-right: 1px solid ;
+}
+
+.register_btn {
+    width: 100px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: 0.1s linear;
+    cursor: pointer;
+}
+
+.register_btn:hover{
+    scale: 1.05;
+}

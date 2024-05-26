@@ -1,0 +1,63 @@
+.modal_section {
+    width: 100vw;
+    height: 100vh;
+    background-color: #cccccc78;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 100px;
+    z-index: 3;
+}
+
+.register_modal_div {
+    width: 500px;
+    height: 400px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 20px;
+    padding: 20px;
+    box-shadow: 1px 1px 20px;
+    border-radius: 5px;
+}
+
+.modal_message_div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+}
+
+.modal_message_big_success {
+    font-size: 40px;
+    color: mediumslateblue;
+}
+
+.modal_message_big_error {
+    font-size: 40px;
+    color: red;
+}
+
+.modal_message_small {
+    font-size: 24px;
+}
+
+.move_to_login {
+    width: 200px;
+    height: 30px;
+    border: 1px solid mediumslateblue;
+    border-radius: 5px;
+    background-color: white;
+    color: mediumslateblue;
+    font-size: 18px;
+    cursor: pointer;
+}

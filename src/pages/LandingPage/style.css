@@ -1,0 +1,40 @@
+.landing_page_div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.landing_page_div h2 {
+    font-size: 30px;
+}
+
+.landing_page_div > nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.landing_page_div > nav > button {
+    width: 100px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.1s linear;
+    font-size: 18px;
+}
+
+.landing_page_div > nav > button:hover {
+    scale: 1.05;
+}
+
+.login_btn {
+    background-color: mediumslateblue;
+    color: white;
+}
+
+.register_btn {
+    color: mediumslateblue;
+}
