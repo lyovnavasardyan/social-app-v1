@@ -4,6 +4,7 @@ import './App.css'
 import LandingPage from './pages/LandingPage/LandingPage'
 import RegisterPage from './pages/RegisterPage/RegisterPage'
 import LoginPage from './pages/LoginPage/LoginPage'
+import ProfilePage from './pages/ProfilePage/ProfilePage'
 
 //todo 1 create reusable form component
 // todo create validation file config 
@@ -19,7 +20,7 @@ function App() {
         <Route path='/' element={<LandingPage />} />
         <Route path='/login' element= {<LoginPage/>} />
         <Route path='/register' element={<RegisterPage />} />
-        <Route path='profile' element={<p>profile</p>} />
+        <Route path='/profile' element={<ProfilePage/>} />
       </Routes>
     </div>
   )

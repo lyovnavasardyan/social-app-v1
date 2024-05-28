@@ -43,8 +43,11 @@ const loginSlice = createSlice({
             })
             .addCase(loginAsync.fulfilled, (state, { payload }) => {
                 state.authenticated = !!payload.access_token;
-                state.token = payload.access_token;
+                state.token = payload.token;
                 state.isFetching = false;
+                    //localStorage.setItem('jwtToken', payload.token);
+                   //localStorage.setItem('name',payload.user.name);
+                  //localStorage.setItem('email',payload.user.email)
             })
             .addCase(loginAsync.rejected, (state, action:any) => {
                 state.isFetching = false;

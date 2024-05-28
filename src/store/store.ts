@@ -2,12 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import landingSlice from "./slices/landingSlice";
 import registerSlice from "./slices/registerSlice";
 import loginSlice from "./slices/loginSlice";
+import userUpdateSlice from "./slices/userUpdateSlice";
 
 const store = configureStore({
     reducer: {
         landingData: landingSlice,
         registerData: registerSlice,
-        loginData:loginSlice
+        loginData:loginSlice,
+        updatedData:userUpdateSlice
     }
 })
 
