@@ -1,5 +1,6 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSelector, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
+import { fetchData } from "../../api/api";
 
 
 const initialState = {
@@ -10,22 +11,18 @@ const initialState = {
     error: null,
 };
 
-export const loginAsync =  createAsyncThunk (
+export const loginAsync = createAsyncThunk(
     'auth/login',
     async (payload, { rejectWithValue }) => {
         try {
-            const response = await axios.post("https://pinetech.org/api/auth/login", payload, {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
+            const response = await fetchData.sendLoginData(payload)
             return response.data;
-        } catch (error:any) {
-           
+        } catch (error: any) {
+
             if (error.response && error.response.data) {
                 return rejectWithValue(error.response.data);
             }
-           
+
             return rejectWithValue({ message: 'An unknown error occurred' });
         }
     }
@@ -39,22 +36,32 @@ const loginSlice = createSlice({
         builder
             .addCase(loginAsync.pending, (state) => {
                 state.isFetching = true;
-                state.error = null; 
+                state.error = null;
             })
             .addCase(loginAsync.fulfilled, (state, { payload }) => {
-                state.authenticated = !!payload.access_token;
-                state.token = payload.token;
-                state.isFetching = false;
-                    //localStorage.setItem('jwtToken', payload.token);
-                   //localStorage.setItem('name',payload.user.name);
-                  //localStorage.setItem('email',payload.user.email)
+                state.authenticated = !!payload.token
+                state.token = payload.token
+                state.isFetching = false
+                localStorage.setItem('jwtToken', payload.token);
+                //localStorage.setItem('name',payload.user.name);
+                //localStorage.setItem('email',payload.user.email)
             })
-            .addCase(loginAsync.rejected, (state, action:any) => {
+            .addCase(loginAsync.rejected, (state, action: any) => {
                 state.isFetching = false;
-                state.error = action.payload.message || 'Email or password are incorrect'; 
+                state.error = action.payload.message || 'Email or password are incorrect';
             });
     },
 });
 
-export const loginActions = loginSlice.actions;
-export default loginSlice.reducer;
+
+
+// create folder for selectors,  slices and thunks
+const mainState = (state:any) => state;
+
+export const authSelector = createSelector(
+    mainState, (state) => state?.loginData.authenticated);
+
+    export const isLoadingSelector = createSelector(
+        mainState, (state) => state?.loginData.isFetching);
+
+export default loginSlice.reducer

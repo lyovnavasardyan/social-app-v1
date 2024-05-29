@@ -68,3 +68,15 @@
     color: red;
     margin-top: 10px;
 }
+
+.move_to_photos {
+    width: 100px;
+    height: 30px;
+    border: 1px solid mediumslateblue;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: 0.1s linear;
+    cursor: pointer;
+    background-color: white;
+    color:mediumslateblue;
+}

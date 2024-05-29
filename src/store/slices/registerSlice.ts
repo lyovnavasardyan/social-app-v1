@@ -1,26 +1,26 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { EnumRegister } from "../../pages/RegisterPage/type";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { fetchData } from "../../api/api";
 
-const initialState: EnumRegister = {
-    title: "Register",
-    inputsInfo: [
-        {
-            id: 1,
-            type: "text",
-            placeholder: 'name'
-        },
-        {
-            id: 2,
-            type: "text",
-            placeholder: 'email'
-        },
-        {
-            id: 3,
-            type: "text",
-            placeholder: 'password'
-        }
-    ]
+const initialState = {
+
 }
+
+export const registerAsync =  createAsyncThunk (
+    'auth/register',
+    async (payload, { rejectWithValue }) => {
+        try {
+            const response = await fetchData.sendRegisterData(payload)
+            return response.data;
+        } catch (error:any) {
+           
+            if (error.response && error.response.data) {
+                return rejectWithValue(error.response.data);
+            }
+           
+            return rejectWithValue({ message: 'An unknown error occurred' });
+        }
+    }
+);
 
 const registerSlice = createSlice({
     name: "registerSlice",
