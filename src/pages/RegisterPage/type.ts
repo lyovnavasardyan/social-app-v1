@@ -1,5 +1,4 @@
 
-export type EnumRegister = {
-    title: string,
-    inputsInfo:Array<object>
+export type RegisterType = {
+    title: string
 }

@@ -9,18 +9,18 @@ const initialState = {
         name: '',
         location: '',
         about: '',
-        facebook:'',
-        instagram:'',
-        phone:''
+        facebook: '',
+        instagram: '',
+        phone: ''
     },
-    error:null
+    error: null
 };
 
 export const updateUserAsync = createAsyncThunk(
     'user/update',
     async (payload, { rejectWithValue }) => {
         try {
-            const token = localStorage.getItem('jwtToken'); 
+            const token = localStorage.getItem('jwtToken');
             const response = await axios.post("https://pinetech.org/api/user-info", payload, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ export const updateUserAsync = createAsyncThunk(
                 },
             });
             return response.data;
-        } catch (error:any) {
+        } catch (error: any) {
             if (error.response && error.response.data) {
                 return rejectWithValue(error.response.data);
             }
@@ -54,11 +54,11 @@ const userUpdateSlice = createSlice({
                 state.userInfo.name = payload.user.name;
                 state.userInfo.location = payload.user.location;
                 state.userInfo.about = payload.user.about;
-                state.userInfo.facebook = payload.user.fb,
-                state.userInfo.instagram = payload.user.instagram,
+                state.userInfo.facebook = payload.user.fb;
+                state.userInfo.instagram = payload.user.instagram;
                 state.userInfo.phone = payload.user.phone
             })
-            .addCase(updateUserAsync.rejected, (state, action:any) => {
+            .addCase(updateUserAsync.rejected, (state, action: any) => {
                 state.isUpdating = false;
                 state.updateError = action.payload.message || 'Failed to update user information';
             });

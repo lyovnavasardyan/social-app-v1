@@ -7,6 +7,7 @@ import { Rootstate } from '../../store/store';
 import { ToastContainer } from 'react-toastify';
 
 import { updateToast } from './toastupdate';
+import { useNavigate } from 'react-router-dom';
 
 interface FormValues {
    name:string;
@@ -20,6 +21,7 @@ interface FormValues {
 const ProfilePage: React.FC = () => {
     const { error } = useSelector((state: Rootstate) => state.updatedData);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [detailsButton, setDetailsButton] = useState(false);
 
     
@@ -115,6 +117,7 @@ const ProfilePage: React.FC = () => {
             ) : (
                 <button className="details-button" onClick={detailsButtonHandler}>{detailsButton ? "Save" : "Details"}</button>
             )}
+                <button onClick={() => navigate('/profile/photos')} className='move_to_photos'>Photos</button>
              <ToastContainer />
         </div>
     );

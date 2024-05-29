@@ -1,5 +1,4 @@
-export type EnumLogin = {
+export type LoginType = {
     title: string,
     authenticated:boolean,
-    
 }

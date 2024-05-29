@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Rootstate } from '../../store/store';
 import { loginAsync } from '../../store/slices/loginSlice';
 import './style.css';
 import { useNavigate } from 'react-router-dom';
+import { loginConfig } from '../../config/config';
+import { authSelector,isLoadingSelector } from '../../store/slices/loginSlice';
 
 interface FormValues {
     email: string;
@@ -15,24 +17,39 @@ interface FormValues {
 const LoginPage: React.FC = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const {title} = loginConfig
     const { error } = useSelector((state: Rootstate) => state.loginData); 
 
+    const isAuthentificated = useSelector(authSelector);
+    const isLoading = useSelector(isLoadingSelector)
+    
     const {
         register,
         handleSubmit,
         formState: { errors }
     } = useForm<FormValues>();
 
+    useEffect(() => {
+          if(isAuthentificated){
+            navigate('/profile')
+          }
+            
+    },[isAuthentificated])
+
     const onSubmit: SubmitHandler<FormValues> = async (data) => {
-        const resultAction = await dispatch(loginAsync(data));
-        if (loginAsync.fulfilled.match(resultAction)) {
-            navigate('/profile');
-        }
+        await dispatch(loginAsync(data));
     };
+    
+
+    if(isLoading) {
+        return (
+            <div style={{margin:"auto 0"}}>loading ... </div>
+        )
+    }
 
     return (
         <div className='login_page_div'>
-            <h2>Login</h2>
+            <h2>{title}</h2>
            
             <form onSubmit={handleSubmit(onSubmit)}>
             {error && <p className="error-message">{error}</p>}
