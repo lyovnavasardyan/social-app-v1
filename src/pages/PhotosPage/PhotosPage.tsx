@@ -9,7 +9,6 @@ const PhotosPage: React.FC = () => {
   const [file, setFile] = useState<File | null>(null)
   const dispatch = useCustomDispatch()
   const { uploading, error, url, allPhotos } = useCustomSelector((state: Rootstate) => state.photosData)
-  console.log(allPhotos);
   
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -42,7 +41,8 @@ const PhotosPage: React.FC = () => {
         <h2>All Photos</h2>
         <div className="photos_div">
           {
-            allPhotos.map(photo => {
+            allPhotos.map((photo) => {
+              
               return <img key={photo.id} src={photo.small} alt="" />
             })
           }
