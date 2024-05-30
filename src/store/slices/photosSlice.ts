@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice,createSelector } from "@reduxjs/toolkit";
 import axios from "axios";
 
 interface PhotoState {
@@ -7,6 +7,7 @@ interface PhotoState {
     url: string | null,
     token: string | null,
     allPhotos: any
+    done:boolean
 }
 
 const initialState: PhotoState = {
@@ -14,7 +15,8 @@ const initialState: PhotoState = {
     error: null,
     url: null,
     token: localStorage.getItem("jwtToken"),
-    allPhotos: []
+    allPhotos: [],
+    done:false
 }
 
 export const uploadPhoto = createAsyncThunk(
@@ -71,6 +73,7 @@ const photosSlice = createSlice({
             .addCase(uploadPhoto.fulfilled, (state, action) => {
                 state.uploading = false
                 state.url = action.payload.url
+                state.done = true
             })
             .addCase(uploadPhoto.rejected, (state, action) => {
                 state.uploading = false
@@ -83,4 +86,9 @@ const photosSlice = createSlice({
     }
 })
 
+const mainState = (state:any) => state;
+
+export const isUploadedSelector = createSelector(
+    mainState, (state) => state?.photosData.done);
+    
 export default photosSlice.reducer
