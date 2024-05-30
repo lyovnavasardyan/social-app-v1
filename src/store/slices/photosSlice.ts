@@ -4,13 +4,15 @@ import axios from "axios";
 interface PhotoState {
     uploading: boolean,
     error: string | null,
-    url: string | null
+    url: string | null,
+    token:string | null
 }
 
 const initialState: PhotoState = {
     uploading: false,
     error: null,
-    url: null
+    url: null,
+    token:localStorage.getItem("jwtToken") 
 }
 
 export const uploadPhoto = createAsyncThunk(
@@ -23,7 +25,7 @@ export const uploadPhoto = createAsyncThunk(
             const res = await axios.post('https://pinetech.org/api/add-single-photo', formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
-                    
+                    'Authorization': `Bearer ${initialState.token}`
                 }
             })
             return res.data

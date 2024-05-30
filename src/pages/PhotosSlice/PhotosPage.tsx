@@ -12,11 +12,11 @@ const PhotosPage: React.FC = () => {
       setFile(e.target.files[0])
     }
   }
-  const token = localStorage.getItem('jwtToken')
+
   
   const handleUpload = () => {
     if (file) {
-      dispatch(uploadPhoto(file, token))
+      dispatch(uploadPhoto(file))
     }
   }
 
