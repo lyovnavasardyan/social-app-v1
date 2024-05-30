@@ -32,7 +32,7 @@ const PhotosPage: React.FC = () => {
     if(isUploaded){
       photoUploadToast()
     }
-  })
+  },[isUploaded])
 
   const BASE_URL = "https://pinetech.org";
 

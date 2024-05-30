@@ -69,6 +69,7 @@ const photosSlice = createSlice({
                 state.uploading = true
                 state.error = null
                 state.url = null
+                state.done = false
             })
             .addCase(uploadPhoto.fulfilled, (state, action) => {
                 state.uploading = false
@@ -78,6 +79,7 @@ const photosSlice = createSlice({
             .addCase(uploadPhoto.rejected, (state, action) => {
                 state.uploading = false
                 state.error = action.payload as string
+                state.done = false
             })
 
             .addCase(getPhotos.fulfilled, (state, action) => {
@@ -90,5 +92,5 @@ const mainState = (state:any) => state;
 
 export const isUploadedSelector = createSelector(
     mainState, (state) => state?.photosData.done);
-    
+
 export default photosSlice.reducer
