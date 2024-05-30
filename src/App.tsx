@@ -5,7 +5,7 @@ import LandingPage from './pages/LandingPage/LandingPage'
 import RegisterPage from './pages/RegisterPage/RegisterPage'
 import LoginPage from './pages/LoginPage/LoginPage'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
-import PhotosPage from './pages/PhotosSlice/PhotosPage'
+import PhotosPage from './pages/PhotosPage/PhotosPage'
 
 //todo 1 create reusable form component
 // todo create validation file config 
