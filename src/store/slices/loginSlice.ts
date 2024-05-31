@@ -43,8 +43,6 @@ const loginSlice = createSlice({
                 state.token = payload.token
                 state.isFetching = false
                 localStorage.setItem('jwtToken', payload.token);
-                //localStorage.setItem('name',payload.user.name);
-                //localStorage.setItem('email',payload.user.email)
             })
             .addCase(loginAsync.rejected, (state, action: any) => {
                 state.isFetching = false;
@@ -55,7 +53,6 @@ const loginSlice = createSlice({
 
 
 
-// create folder for selectors,  slices and thunks
 const mainState = (state:any) => state;
 
 export const authSelector = createSelector(
