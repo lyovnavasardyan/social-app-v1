@@ -6,6 +6,7 @@ import RegisterPage from './pages/RegisterPage/RegisterPage'
 import LoginPage from './pages/LoginPage/LoginPage'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
 import PhotosPage from './pages/PhotosPage/PhotosPage'
+import Photos from './pages/Photos/Photos'
 
 //todo 1 create reusable form component
 // todo create validation file config 
@@ -23,6 +24,7 @@ function App() {
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/profile' element={<ProfilePage/>} />
         <Route path='/profile/photos' element={<PhotosPage />} />
+        <Route path='/photos' element={<Photos />} />
       </Routes>
     </div>
   )

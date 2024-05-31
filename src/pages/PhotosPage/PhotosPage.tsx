@@ -2,13 +2,20 @@ import React, { useEffect, useState } from 'react'
 import { useCustomDispatch, useCustomSelector } from '../../customHooks/customHooks'
 import { Rootstate } from '../../store/store'
 import { getPhotos, uploadPhoto } from '../../store/slices/photosSlice'
+import { ToastContainer } from 'react-toastify'
+import { isUploadedSelector } from '../../store/slices/photosSlice'
+import { photoUploadToast } from './toastphotoUpload'
 
 import './style.css'
+import { useSelector } from 'react-redux'
 
 const PhotosPage: React.FC = () => {
   const [file, setFile] = useState<File | null>(null)
   const dispatch = useCustomDispatch()
   const { uploading, error, url, allPhotos } = useCustomSelector((state: Rootstate) => state.photosData)
+
+  const isUploaded = useSelector(isUploadedSelector)
+
   
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -19,7 +26,6 @@ const PhotosPage: React.FC = () => {
   const handleUpload = () => {
     if (file) {
       dispatch(uploadPhoto(file))
-      dispatch(getPhotos())
     }
   }
 
@@ -27,11 +33,20 @@ const PhotosPage: React.FC = () => {
     dispatch(getPhotos())
   }, [])
 
+  useEffect(()=>{
+    if(isUploaded){
+      photoUploadToast()
+      dispatch(getPhotos())
+    }
+  },[isUploaded])
+
+  const BASE_URL = "https://pinetech.org";
+
   return (
     <div className='photos_page'>
       <div className="upload_div">
         <input type="file" onChange={handleFileChange} />
-        <button onClick={handleUpload} disabled={uploading}>
+        <button onClick={handleUpload} disabled={uploading || !file}>
           {uploading ? "uploading..." : "upload"}
         </button>
         {error && <div>error: {error}</div>}
@@ -40,14 +55,12 @@ const PhotosPage: React.FC = () => {
       <div className="all_photos_div">
         <h2>All Photos</h2>
         <div className="photos_div">
-          {
-            allPhotos.map((photo) => {
-              
-              return <img key={photo.id} src={photo.small} alt="" />
-            })
-          }
+            {allPhotos.map(photo => (
+                <img key={photo.id} src={`${BASE_URL}${photo.small}`} alt={photo.title || "photo"} />
+            ))}
         </div>
-      </div>
+      </div>  
+      <ToastContainer/>
     </div>
   )
 }

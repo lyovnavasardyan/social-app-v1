@@ -9,3 +9,5 @@ export const loginConfig: LoginType = {
     title: 'Login',
     authenticated: false
 }
+
+export const BACKEND_URL = 'https://pinetech.org';

@@ -14,6 +14,9 @@ export const fetchData = {
                 "Content-Type": 'application/json'
             }
         })
+    },
+    getAllPhotos() {
+        return axios.get('https://pinetech.org/api/photos')
     }
 }
 

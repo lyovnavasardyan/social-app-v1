@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { loginConfig } from '../../config/config';
 import { authSelector,isLoadingSelector } from '../../store/slices/loginSlice';
 import LoadingGif from "../../../public/LoadingGif/loadingGif.tsx"
+import { getPhotos } from '../../store/slices/photosSlice.ts';
 
 
 interface FormValues {

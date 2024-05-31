@@ -1,8 +1,8 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import './style.css';
 import { updateUserAsync } from '../../store/slices/userUpdateSlice';
-import { useDispatch,useSelector } from 'react-redux';
-import {useForm,SubmitHandler} from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { Rootstate } from '../../store/store';
 import { ToastContainer } from 'react-toastify';
 
@@ -10,12 +10,12 @@ import { updateToast } from './toastupdate';
 import { useNavigate } from 'react-router-dom';
 
 interface FormValues {
-   name:string;
-   phone: number;
-   location:number;
-   about:string;
-   fb:string;
-   instagram:string
+    name: string;
+    phone: number;
+    location: number;
+    about: string;
+    fb: string;
+    instagram: string
 }
 
 const ProfilePage: React.FC = () => {
@@ -24,7 +24,7 @@ const ProfilePage: React.FC = () => {
     const navigate = useNavigate();
     const [detailsButton, setDetailsButton] = useState(false);
 
-    
+
     const detailsButtonHandler = () => {
         setDetailsButton(!detailsButton);
     }
@@ -36,7 +36,7 @@ const ProfilePage: React.FC = () => {
         updateToast()
     };
 
-    const { register, handleSubmit ,formState: { errors }} = useForm<FormValues>();
+    const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
 
     return (
         <div className="profile_page_div">
@@ -56,8 +56,8 @@ const ProfilePage: React.FC = () => {
                                         notOnlyNumbers: value => /^[^\d]*[a-zA-Z][^\d]*$/.test(value) || "Name cannot be only numbers"
                                     }
                                 })}
-                            />  
-                               <p>{errors.name?.message}</p>
+                            />
+                            <p>{errors.name?.message}</p>
 
                             <h2>Phone</h2>
                             <input
@@ -67,7 +67,7 @@ const ProfilePage: React.FC = () => {
                                     required: "Phone field is required"
                                 })}
                             />
-                             <p>{errors.phone?.message}</p>
+                            <p>{errors.phone?.message}</p>
 
                             <h2>Facebook</h2>
                             <input
@@ -77,7 +77,7 @@ const ProfilePage: React.FC = () => {
                                     required: "Facebook field is required"
                                 })}
                             />
-                             <p>{errors.fb?.message}</p>
+                            <p>{errors.fb?.message}</p>
 
                             <h2>Location</h2>
                             <input
@@ -87,7 +87,7 @@ const ProfilePage: React.FC = () => {
                                     required: "Location field is required"
                                 })}
                             />
-                             <p>{errors.location?.message}</p>
+                            <p>{errors.location?.message}</p>
 
                             <h2>About</h2>
                             <input
@@ -97,7 +97,7 @@ const ProfilePage: React.FC = () => {
                                     required: "About field is required"
                                 })}
                             />
-                             <p>{errors.about?.message}</p>
+                            <p>{errors.about?.message}</p>
 
                             <h2>Instagram</h2>
                             <input
@@ -107,7 +107,7 @@ const ProfilePage: React.FC = () => {
                                     required: "Instagram field is required"
                                 })}
                             />
-                             <p>{errors.instagram?.message}</p>
+                            <p>{errors.instagram?.message}</p>
                         </label>
                         <button type="submit" className="details-button">
                             Save
@@ -117,8 +117,8 @@ const ProfilePage: React.FC = () => {
             ) : (
                 <button className="details-button" onClick={detailsButtonHandler}>{detailsButton ? "Save" : "Details"}</button>
             )}
-                <button onClick={() => navigate('/profile/photos')} className='move_to_photos'>Photos</button>
-             <ToastContainer />
+            <button onClick={() => navigate('/profile/photos')} className='move_to_photos'>Photos</button>
+            <ToastContainer />
         </div>
     );
 }
