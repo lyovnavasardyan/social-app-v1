@@ -5,6 +5,7 @@ import loginSlice from "./slices/loginSlice";
 import userUpdateSlice from "./slices/userUpdateSlice";
 import photosSlice from "./slices/photosSlice";
 import allUserPhotosSlice from "./slices/allUserPhotosSlice";
+import allPhotographersSlice from "./slices/photographers"
 
 const store = configureStore({
     reducer: {
@@ -13,7 +14,8 @@ const store = configureStore({
         loginData: loginSlice,
         updatedData: userUpdateSlice,
         photosData: photosSlice,
-        allUserPhotosData: allUserPhotosSlice
+        allUserPhotosData: allUserPhotosSlice,
+        allPhotographersData:allPhotographersSlice
     }
 })
 
