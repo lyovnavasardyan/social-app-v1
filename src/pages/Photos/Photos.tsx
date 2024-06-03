@@ -1,4 +1,4 @@
-import  { useEffect } from 'react'
+import { useEffect } from 'react'
 import './style.css';
 import { useCustomDispatch } from '../../customHooks/customHooks'
 import { done, getAllPhotos, photos } from '../../store/slices/allUserPhotosSlice'
@@ -12,33 +12,33 @@ const Photos = () => {
     const photosData = useSelector(photos);
     const isPhotosDone = useSelector(done);
     const dispatch = useCustomDispatch();
-    const navigate = useNavigate();    
+    const navigate = useNavigate();
 
     useEffect(() => {
         dispatch(getAllPhotos())
     }, [])
 
     console.log(photosData);
-  
+
     return (
         <div>
             {
                 !isPhotosDone ? <LoadingGif /> : (
-                    
+
                     <div className="photos">
                         {
-                            photosData?.data?.map((photo:any) => (
-                                
+                            photosData?.data?.map((photo: any) => (
+
                                 <div className="photo" key={photo.id}>
                                     <div className="photo-header">
-                                        <img src={BACKEND_URL + photo?.user?.avatar} className="avatar" alt={photo?.user?.name} onClick={()=>
-                                            navigate(`/photographer/${photo.user.id}`)
-                                        }/>
-                                        <h5>{photo?.user?.name}</h5>
-                                    </div>
-                                    <img src={BACKEND_URL + photo.small} alt={photo.title} className="photo-image" onClick={()=>
+                                        <img src={BACKEND_URL + photo?.user?.avatar} className="avatar" alt={photo?.user?.name} onClick={() =>
                                             navigate(`/photographer/${photo.user.id}`)
                                         } />
+                                        <h5>{photo?.user?.name}</h5>
+                                    </div>
+                                    <img src={BACKEND_URL + photo.small} alt={photo.title} className="photo-image" onClick={() =>
+                                        navigate(`/photographer/${photo.user.id}`)
+                                    } />
                                     <div className='photo-meta'>
                                         <span><FaEye /> {photo.views}</span>
                                         <span><FaCalendarAlt /> {new Date(photo.created_at).toISOString().split('T')[0]}</span>

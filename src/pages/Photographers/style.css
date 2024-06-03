@@ -3,6 +3,7 @@
     height: 100px;
     border-radius: 50%;
     object-fit: cover;
+    cursor: pointer;
 }
 
 .header {
@@ -17,6 +18,15 @@
 
 .header .info h5 {
     margin: 5px 0;
+}
+
+.name{
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+}
+
+.name:hover {
+    border-bottom: 2px solid black;
 }
 
 .photographer-block {
@@ -35,8 +45,10 @@
 }
 
 .photographers {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: center;
+    gap: 20px;
 }
 
 .photographer-block a {
@@ -46,4 +58,16 @@
 
 .photographer-block a:hover {
     text-decoration: underline;
+}
+
+@media screen and (max-width: 1350px) {
+    .photographers {
+        grid-template-columns: auto auto;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .photographers {
+        grid-template-columns: auto;
+    }
 }

@@ -34,7 +34,7 @@ const Photographers = () =>{
                                     <div className="header">
                                         <img className="avatar" src={BACKEND_URL + photographer?.avatar} alt={photographer?.name} />
                                         <div className="info">
-                                            <h5>{photographer?.name}</h5>
+                                            <h5 className="name">{photographer?.name}</h5>
                                             <h5>{photographer?.email}</h5>
                                             <h5>
                                                 <a href={photographer?.fb} target="_blank" rel="noopener noreferrer">
