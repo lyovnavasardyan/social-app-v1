@@ -1,41 +1,48 @@
+import  { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchData } from '../../api/api';
-import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPhotographerById, photographer, photos,loading } from '../../store/slices/clickedPhotographerSlice';
 import './style.css';
 import { BACKEND_URL } from '../../config/config';
 
+
 const PhotographerProfile = () => {
   const { userId } = useParams();
-  const [currentPhotographer, setCurrentPhotographer] = useState(null);
+  const dispatch = useDispatch();
+  const clickedPhotographer = useSelector(photographer);
+  const ownPhotos = useSelector(photos);
+  const isloading = useSelector(loading);
+  
 
   useEffect(() => {
-    const fetchPhotographer = async () => {
-      const obj = { userId };
-      const response = await fetchData.getChoosenPhotographer(obj);
-      setCurrentPhotographer(response.data);
-    };
+    dispatch(getPhotographerById(userId));
+  }, [dispatch, userId]);
 
-    fetchPhotographer();
-  }, [userId]);
-
-  if (!currentPhotographer) {
+  if (isloading) {
     return <div>Loading...</div>;
   }
 
-  const photographer = currentPhotographer.data.data[0].user;
-  const photos = currentPhotographer.data.data;
+ 
+
+  if (!clickedPhotographer) {
+    return <div>No data found</div>;
+  }
 
   return (
     <div className="photographer-profile">
       <div className="photographer-info">
-        <img src={`${BACKEND_URL}${photographer?.avatar}`} className="avatar" alt="Photographer Avatar" />
-        <h2>{photographer.name}</h2>
-        <p>{photographer.email}</p>
-        <p>{photographer.phone}</p>
-        <p><a href={photographer.fb} target="_blank" rel="noopener noreferrer">Facebook Profile</a></p>
+        <img src={`${BACKEND_URL}${clickedPhotographer?.avatar}`} className="avatar" alt="Photographer Avatar" />
+        <h2>{clickedPhotographer.name}</h2>
+        <p>{clickedPhotographer.email}</p>
+        <p>{clickedPhotographer.phone}</p>
+        <p>
+          <a href={clickedPhotographer.fb} target="_blank" rel="noopener noreferrer">
+            Facebook Profile
+          </a>
+        </p>
       </div>
       <div className="photographer-photos">
-        {photos.map((photo) => (
+        {ownPhotos.map((photo:any) => (
           <img key={photo.id} src={`${BACKEND_URL}${photo.small}`} alt="Photographer Work" className="photo" />
         ))}
       </div>

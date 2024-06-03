@@ -27,7 +27,7 @@ const Photographers = () =>{
                 !isPhotographersDone ? <LoadingGif /> : (
                     <div className="photographers">
                         {
-                            photographersData?.data?.map((photographer) => (
+                            photographersData?.data?.map((photographer:any) => (
                                 <div className="photographer-block" key={photographer.id} onClick={()=>
                                     navigate(`/photographer/${photographer.id}`)
                                 }>
