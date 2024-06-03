@@ -6,8 +6,6 @@ import { useSelector } from 'react-redux'
 import LoadingGif from '../../../public/LoadingGif/loadingGif'
 import { BACKEND_URL } from '../../config/config'
 import { FaEye, FaCalendarAlt } from 'react-icons/fa';
-import { fetchData } from '../../api/api';
-import ClickedPhotographer from '../ClickedPhotographer/clickedPhotographer';
 import { useNavigate } from 'react-router-dom';
 
 const Photos = () => {
@@ -21,30 +19,13 @@ const Photos = () => {
     }, [])
 
     console.log(photosData);
-
-    const data = {
-    userId : 450
-    }
-    
-    const testing = async()=>{
-        const response = await fetchData.getChoosenPhotographer(data);
-        console.log(response.data)
-        return response.data;
-    }
-
-    
-       
-     
-
+  
     return (
         <div>
             {
                 !isPhotosDone ? <LoadingGif /> : (
                     
                     <div className="photos">
-                        <button onClick={testing}>
-                            TEST BUTTON
-                        </button>
                         {
                             photosData?.data?.map((photo) => (
                                 

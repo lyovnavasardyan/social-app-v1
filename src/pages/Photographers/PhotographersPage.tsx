@@ -4,14 +4,16 @@ import { useEffect } from "react";
 import { useCustomDispatch } from "../../customHooks/customHooks";
 import LoadingGif from "../../../public/LoadingGif/loadingGif";
 import { BACKEND_URL } from "../../config/config";
-import './style.css'
+import './style.css';
+import { useNavigate } from "react-router-dom";
 
 
 const Photographers = () =>{
 
     const photographersData = useSelector(photographers);
     const isPhotographersDone = useSelector(done);
-    const dispatch = useCustomDispatch()
+    const dispatch = useCustomDispatch();
+    const navigate = useNavigate()
 
     useEffect(()=>{
         dispatch(getAllPhotographers())
@@ -26,7 +28,9 @@ const Photographers = () =>{
                     <div className="photographers">
                         {
                             photographersData?.data?.map((photographer) => (
-                                <div className="photographer-block" key={photographer.id}>
+                                <div className="photographer-block" key={photographer.id} onClick={()=>
+                                    navigate(`/photographer/${photographer.id}`)
+                                }>
                                     <div className="header">
                                         <img className="avatar" src={BACKEND_URL + photographer?.avatar} alt={photographer?.name} />
                                         <div className="info">
