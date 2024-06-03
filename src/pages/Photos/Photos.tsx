@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import  { useEffect } from 'react'
 import './style.css';
 import { useCustomDispatch } from '../../customHooks/customHooks'
 import { done, getAllPhotos, photos } from '../../store/slices/allUserPhotosSlice'
@@ -27,7 +27,7 @@ const Photos = () => {
                     
                     <div className="photos">
                         {
-                            photosData?.data?.map((photo) => (
+                            photosData?.data?.map((photo:any) => (
                                 
                                 <div className="photo" key={photo.id}>
                                     <div className="photo-header">
