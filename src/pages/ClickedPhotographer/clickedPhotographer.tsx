@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { fetchData } from '../../api/api';
 import { useEffect, useState } from 'react';
-import './style.css'; 
+import './style.css';
 import { BACKEND_URL } from '../../config/config';
 
 const PhotographerProfile = () => {
