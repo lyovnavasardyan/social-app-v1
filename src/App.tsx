@@ -8,6 +8,7 @@ import ProfilePage from './pages/ProfilePage/ProfilePage'
 import PhotosPage from './pages/PhotosPage/PhotosPage'
 import Photos from './pages/Photos/Photos'
 import Photographers from './pages/Photographers/PhotographersPage'
+import ClickedPhotographer from './pages/ClickedPhotographer/clickedPhotographer'
 
 //todo 1 create reusable form component
 // todo create validation file config 
@@ -27,6 +28,7 @@ function App() {
         <Route path='/profile/photos' element={<PhotosPage />} />
         <Route path='/photos' element={<Photos />} />
         <Route path = '/photographers' element = {<Photographers/>}/>
+        <Route path='/photographer/:userId' element={<ClickedPhotographer />} />
       </Routes>
     </div>
   )

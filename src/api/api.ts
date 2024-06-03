@@ -20,6 +20,13 @@ export const fetchData = {
     },
     getAllPhotographers(){
         return axios.get('https://pinetech.org/api/photographers')
+    },
+    getChoosenPhotographer(data:any){
+        return axios.post('https://pinetech.org/api/get-photographer-photos',data,{
+            headers:{
+                "Content-Type":'application/json'
+            }
+        })
     }
 }
 
