@@ -48,7 +48,7 @@ const PhotographerProfile = () => {
       </div>
       <div className="photographer-photos">
         {ownPhotos.map((photo: any) => (
-          <img onClick={() => setPhotoModalInfo({isOpen: true, photoData: photo})} key={photo.id} src={`${BACKEND_URL}${photo.small}`} alt="Photographer Work" className="photo" />
+          <img onClick={() => setPhotoModalInfo({isOpen: true, photoData: photo})} key={photo.id} src={`${BACKEND_URL}${photo.small}`} alt="Photographer Work" className="photographer-photo" />
         ))}
       </div>
       <Modal isOpen={photoModalInfo.isOpen}>
