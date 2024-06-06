@@ -2,7 +2,7 @@ import React from 'react'
 
 import './style.css'
 import { BACKEND_URL } from '../../config/config';
-import { IoClose } from 'react-icons/io5';
+
 
 interface UserInfoInt {
     name: string
@@ -20,12 +20,12 @@ interface PhotoInt {
     setPhotoModalInfo: any
 }
 
-const PhotoModal: React.FC<PhotoInt> = ({ photoInfo, setPhotoModalInfo }) => {
+const PhotoModal: React.FC<PhotoInt> = ({ photoInfo}) => {
     console.log(photoInfo);
     
   return (
     <div className='photo_modal_div'>
-        <IoClose onClick={() => setPhotoModalInfo({isOpen: false, photoInfo})} className='close' />
+ 
         <div className="photo_info_div">
             <h2>{photoInfo.user.name}</h2>
             <h4>{photoInfo.views} views</h4>

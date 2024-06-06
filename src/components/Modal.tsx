@@ -1,20 +1,21 @@
 import React, { ReactNode } from "react";
-import './RegisterModal/style.css';
+import './modal.css';
+import { IoClose } from 'react-icons/io5';
 
 interface ModalProps {
-    isOpen: boolean;
+    shouldShow: boolean;
+    onRequestClose:void;
     children: ReactNode;
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, children }) => {
+const Modal: React.FC<ModalProps> = ({shouldShow ,onRequestClose, children }) => {
 
-    if (!isOpen) return null;
-
-    return (
+   return shouldShow? (
         <section className="modal_section">
+             <IoClose onClick={onRequestClose}/>
             {children}
         </section>
-    )
+    ):null
 }
 
 export default Modal;

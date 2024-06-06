@@ -21,12 +21,19 @@ export const fetchData = {
     getAllPhotographers(){
         return axios.get('https://pinetech.org/api/photographers')
     },
-    getChoosenPhotographer(data:any){
+    getSinglePhotographer(data:any){
         return axios.post('https://pinetech.org/api/get-photographer-photos',data,{
             headers:{
                 "Content-Type":'application/json'
             }
         })
-    }
+    },
+    searchPhotographerPage(data:any) {
+        return axios.get(`https://pinetech.org/api/photographer/search?search=${data}`, {
+            headers: {
+                "Content-Type": 'application/json'
+            }
+        })
+    },
 }
 

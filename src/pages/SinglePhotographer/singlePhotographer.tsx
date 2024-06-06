@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPhotographerById, photographer, photos, loading } from '../../store/slices/clickedPhotographerSlice';
+import { getPhotographerById, photographer, photos, loading } from '../../store/slices/singlePhotographerSlice';
 import './style.css';
 import { BACKEND_URL } from '../../config/config';
 import Modal from '../../components/Modal';
@@ -16,9 +16,11 @@ const PhotographerProfile = () => {
   const isloading = useSelector(loading);
 
   const [photoModalInfo, setPhotoModalInfo] = useState({
-    isOpen: false,
     photoData: {}
   })
+
+  const [showModal, setShowModal] = useState(false)
+  
 
   useEffect(() => {
     dispatch(getPhotographerById(userId));
@@ -47,18 +49,28 @@ const PhotographerProfile = () => {
         </p>
       </div>
       <div className="photographer-photos">
-        {ownPhotos.map((photo: any) => (
-          <img onClick={() => setPhotoModalInfo({isOpen: true, photoData: photo})} key={photo.id} src={`${BACKEND_URL}${photo.small}`} alt="Photographer Work" className="photographer-photo" />
+        {ownPhotos.map(photo => (
+          <img 
+            onClick={() => {
+              setPhotoModalInfo({ photoData: photo });
+              setShowModal(true);
+            }} 
+            key={photo.id} 
+            src={`${BACKEND_URL}${photo.small}`} 
+            alt="Photographer Work" 
+            className="photographer-photo" 
+          />
         ))}
       </div>
-      <Modal isOpen={photoModalInfo.isOpen}>
-        <PhotoModal
-          photoInfo={photoModalInfo.photoData}
-          setPhotoModalInfo={setPhotoModalInfo}
-        />
-      </Modal>
+      
+        <Modal 
+          shouldShow={showModal}
+          onRequestClose={() => setShowModal(false)}
+        >
+          <PhotoModal photoInfo={photoModalInfo.photoData}/>   
+        </Modal>
+     
     </div>
   );
 };
-
 export default PhotographerProfile;

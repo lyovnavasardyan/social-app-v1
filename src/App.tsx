@@ -8,7 +8,7 @@ import ProfilePage from './pages/ProfilePage/ProfilePage'
 import PhotosPage from './pages/PhotosPage/PhotosPage'
 import Photos from './pages/Photos/Photos'
 import Photographers from './pages/Photographers/PhotographersPage'
-import ClickedPhotographer from './pages/ClickedPhotographer/clickedPhotographer'
+import ClickedPhotographer from './pages/SinglePhotographer/singlePhotographer'
 
 //todo 1 create reusable form component
 // todo create validation file config 
