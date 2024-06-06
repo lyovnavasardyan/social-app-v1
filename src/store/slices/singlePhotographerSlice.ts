@@ -12,7 +12,7 @@ export const getPhotographerById = createAsyncThunk(
   'photographer/getById',
   async (userId, { rejectWithValue }) => {
     try {
-      const response = await fetchData.getChoosenPhotographer({ userId });
+      const response = await fetchData.getSinglePhotographer({ userId });
       return response.data;
     } catch (error:any) {
       if (error.response && error.response.data) {
@@ -47,9 +47,9 @@ const photographerSlice = createSlice({
 
 const mainState = (state:any) => state;
 
-export const photographer = createSelector(mainState, (state) => state.clickedPhotographerData.photographer);
-export const photos = createSelector(mainState, (state) => state.clickedPhotographerData.photos);
-export const loading = createSelector(mainState, (state) => state.clickedPhotographerData.loading);
+export const photographer = createSelector(mainState, (state) => state.singlePhotographerData.photographer);
+export const photos = createSelector(mainState, (state) => state.singlePhotographerData.photos);
+export const loading = createSelector(mainState, (state) => state.singlePhotographerData.loading);
 
 
 export default photographerSlice.reducer;

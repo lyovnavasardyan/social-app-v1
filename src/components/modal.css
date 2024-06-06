@@ -1,0 +1,28 @@
+.modal_section {
+    width: 100vw;
+    height: 100vh;
+    background-color: #cccccc78;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 3;
+}
+
+.close {
+    color: white;
+    font-size: 40px;
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    cursor: pointer;
+    transition: 0.1s linear;
+}
+
+.close:hover {
+    scale: 1.2;
+}

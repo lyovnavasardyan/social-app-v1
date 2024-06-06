@@ -26,6 +26,8 @@ export const getAllPhotographers = createAsyncThunk(
     
 );
 
+
+
 const allPhotographersSlice =  createSlice({
     name: 'allPhotographersSlice',
     initialState,
