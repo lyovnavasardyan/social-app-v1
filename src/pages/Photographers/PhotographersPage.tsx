@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux"
 import { photographers, done, getAllPhotographers } from "../../store/slices/photographers";
-import { searchPhotographerPage,searchedPhotographers } from "../../store/slices/searchedPhotographerSlice";
+import { searchPhotographerPage, searchedPhotographers } from "../../store/slices/searchedPhotographerSlice";
 import { useCallback, useDebugValue, useEffect, useState } from "react";
 import { useCustomDispatch } from "../../customHooks/customHooks";
 import LoadingGif from "../../../public/LoadingGif/loadingGif";
@@ -8,6 +8,8 @@ import { BACKEND_URL } from "../../config/config";
 import './style.css';
 import { useNavigate } from "react-router-dom";
 import { useDebounce } from "../../customHooks/useDebounce";
+import Pagination from "../../components/Pagination/Pagination";
+import Search from "../../components/Search/Search";
 
 
 const Photographers = () => {
@@ -16,19 +18,29 @@ const Photographers = () => {
     const dispatch = useCustomDispatch();
     const navigate = useNavigate();
     const [searchValue, setSearchValue] = useState('');
-    const debouncedValue = useDebounce(searchValue, 1000);
+    const debouncedValue = useDebounce(searchValue, 500);
     const searchedPhotographerInfo = useSelector(searchedPhotographers);
 
-    useEffect(() => {
-        dispatch(getAllPhotographers());
-    }, [dispatch]);
+    const [activePage, setActivePage] = useState(1)
+
+    const definePaginationBtns = () => {
+        const pageNumbers = []
+        for(let i = 1; i <= photographersData.last_page; i++) {
+            pageNumbers.push(i)
+        }
+        return pageNumbers
+    }
 
     const handleSearch = useCallback(async () => {
         if (debouncedValue) {
             await dispatch(searchPhotographerPage(debouncedValue));
-            console.log( debouncedValue); 
+            console.log(debouncedValue);
         }
     }, [debouncedValue, dispatch]);
+
+    useEffect(() => {
+        dispatch(getAllPhotographers());
+    }, [dispatch]);
 
     useEffect(() => {
         if (debouncedValue) {
@@ -38,18 +50,17 @@ const Photographers = () => {
 
     const photographersToDisplay = debouncedValue ? searchedPhotographerInfo : photographersData.data;
 
+
+    const paginationBtns = definePaginationBtns()
+
     return (
-        <div>
+        <div className="photographers_page_div">
             {!isPhotographersDone ? <LoadingGif /> : (
                 <>
-                    <div>
-                        <input
-                            type="text"
-                            value={searchValue}
-                            onChange={(e) => setSearchValue(e.target.value)}
-                        />
-                        <button>Search</button>
-                    </div>
+                    <Search 
+                    searchValue={searchValue}
+                    setSearchValue={setSearchValue}
+                     />
                     <div className="photographers">
                         {photographersToDisplay?.map((photographer: any) => (
                             <div className="photographer-block" key={photographer.id} onClick={() => navigate(`/photographer/${photographer.id}`)}>
@@ -68,6 +79,11 @@ const Photographers = () => {
                             </div>
                         ))}
                     </div>
+                    <Pagination
+                        activePage={activePage}
+                        paginationBtns={paginationBtns}
+                        setActivePage={setActivePage}
+                    />
                 </>
             )}
         </div>

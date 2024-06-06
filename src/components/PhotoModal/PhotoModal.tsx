@@ -25,7 +25,6 @@ const PhotoModal: React.FC<PhotoInt> = ({ photoInfo}) => {
     
   return (
     <div className='photo_modal_div'>
- 
         <div className="photo_info_div">
             <h2>{photoInfo.user.name}</h2>
             <h4>{photoInfo.views} views</h4>

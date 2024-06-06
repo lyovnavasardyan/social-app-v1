@@ -1,0 +1,29 @@
+.sign_buttons_div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.sign_buttons_div > button {
+    width: 100px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.1s linear;
+    font-size: 18px;
+}
+
+.sign_buttons_div > button:hover {
+    scale: 1.05;
+}
+
+.login_btn {
+    background-color: mediumslateblue;
+    color: white;
+}
+
+.register_btn {
+    color: mediumslateblue;
+}

@@ -18,8 +18,8 @@ export const fetchData = {
     getAllPhotos() {
         return axios.get('https://pinetech.org/api/photos')
     },
-    getAllPhotographers(){
-        return axios.get('https://pinetech.org/api/photographers')
+    getAllPhotographers(page = 1){
+        return axios.get(`https://pinetech.org/api/photographers?page=${page}`)
     },
     getSinglePhotographer(data:any){
         return axios.post('https://pinetech.org/api/get-photographer-photos',data,{

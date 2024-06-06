@@ -1,0 +1,20 @@
+
+.pagination_div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pagination_div > button {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 1px 1px 2px rgb(128, 128, 128);
+    
+}
+
+.active_page_btn {
+    background-color: mediumslateblue;
+    color: white;
+}

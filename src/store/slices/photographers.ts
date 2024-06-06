@@ -3,18 +3,18 @@ import { createAsyncThunk, createSelector, createSlice } from "@reduxjs/toolkit"
 import { fetchData } from "../../api/api";
 
 const initialState = {
-    photographers:[],
-    done:false
+    photographers: [],
+    done: false
 }
 
 export const getAllPhotographers = createAsyncThunk(
     'api/photographers',
-    async(_,{rejectWithValue})=>{
+    async (page, { rejectWithValue }) => {
         try {
-            const response = await fetchData.getAllPhotographers();
+            const response = await fetchData.getAllPhotographers(page);
 
             return response.data;
-        }catch (error: any) {
+        } catch (error: any) {
 
             if (error.response && error.response.data) {
                 return rejectWithValue(error.response.data);
@@ -23,12 +23,12 @@ export const getAllPhotographers = createAsyncThunk(
             return rejectWithValue({ message: 'An unknown error occurred' });
         }
     }
-    
+
 );
 
 
 
-const allPhotographersSlice =  createSlice({
+const allPhotographersSlice = createSlice({
     name: 'allPhotographersSlice',
     initialState,
     reducers: {
@@ -39,7 +39,7 @@ const allPhotographersSlice =  createSlice({
             .addCase(getAllPhotographers.pending, (state) => {
                 state.done = false
             })
-            .addCase(getAllPhotographers.fulfilled, (state, {payload}) => {
+            .addCase(getAllPhotographers.fulfilled, (state, { payload }) => {
                 state.done = true
                 state.photographers = payload.data
             })

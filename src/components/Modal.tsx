@@ -12,7 +12,7 @@ const Modal: React.FC<ModalProps> = ({shouldShow ,onRequestClose, children }) =>
 
    return shouldShow? (
         <section className="modal_section">
-             <IoClose onClick={onRequestClose}/>
+             <IoClose className="close" onClick={onRequestClose}/>
             {children}
         </section>
     ):null
