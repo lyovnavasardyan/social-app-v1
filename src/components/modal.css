@@ -1,15 +1,16 @@
 .modal_section {
     width: 100vw;
     height: 100vh;
-    background-color: #cccccc78;
-    position: fixed;
+    background-color: black;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    display: flex;
+    /* display: flex;
     justify-content: center;
     align-items: flex-start;
+    flex-direction: column; */
     z-index: 3;
 }
 

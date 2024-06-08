@@ -83,6 +83,7 @@ const Photographers = () => {
                         activePage={activePage}
                         paginationBtns={paginationBtns}
                         setActivePage={setActivePage}
+                        lastPage={photographersData.last_page}
                     />
                 </>
             )}

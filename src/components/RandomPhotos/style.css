@@ -1,0 +1,10 @@
+.random-photos {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    background-color: black;
+
+    .random-photo{
+        width: calc(100% / 4 - 20px);
+     }
+}
