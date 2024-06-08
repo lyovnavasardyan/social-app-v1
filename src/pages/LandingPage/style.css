@@ -1,11 +1,8 @@
 .landing_page_div{
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
     gap: 20px;
-}
-
-.landing_page_div h2 {
-    font-size: 30px;
+    padding: 100px;
 }

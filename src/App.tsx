@@ -9,6 +9,7 @@ import PhotosPage from './pages/PhotosPage/PhotosPage'
 import Photos from './pages/Photos/Photos'
 import Photographers from './pages/Photographers/PhotographersPage'
 import ClickedPhotographer from './pages/SinglePhotographer/singlePhotographer'
+import Menu from './components/Menu/Menu'
 
 //todo 1 create reusable form component
 // todo create validation file config 
@@ -20,14 +21,15 @@ function App() {
 
   return (
     <div className='App'>
+      <Menu />
       <Routes>
         <Route path='/' element={<LandingPage />} />
-        <Route path='/login' element= {<LoginPage/>} />
+        <Route path='/login' element={<LoginPage />} />
         <Route path='/register' element={<RegisterPage />} />
-        <Route path='/profile' element={<ProfilePage/>} />
+        <Route path='/profile' element={<ProfilePage />} />
         <Route path='/profile/photos' element={<PhotosPage />} />
         <Route path='/photos' element={<Photos />} />
-        <Route path = '/photographers' element = {<Photographers/>}/>
+        <Route path='/photographers' element={<Photographers />} />
         <Route path='/photographer/:userId' element={<ClickedPhotographer />} />
       </Routes>
     </div>

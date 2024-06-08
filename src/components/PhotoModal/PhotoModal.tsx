@@ -21,7 +21,8 @@ interface PhotoInt {
 }
 
 const PhotoModal: React.FC<PhotoInt> = ({ photoInfo}) => {
-    console.log(photoInfo);
+
+    window.scrollTo(0, 0)
     
   return (
     <div className='photo_modal_div'>

@@ -1,0 +1,11 @@
+.menu_div{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.menu_div h2 {
+    font-size: 30px;
+}

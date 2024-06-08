@@ -25,7 +25,7 @@ const Photographers = () => {
 
     const definePaginationBtns = () => {
         const pageNumbers = []
-        for(let i = 1; i <= photographersData.last_page; i++) {
+        for (let i = 1; i <= photographersData.last_page; i++) {
             pageNumbers.push(i)
         }
         return pageNumbers
@@ -57,10 +57,10 @@ const Photographers = () => {
         <div className="photographers_page_div">
             {!isPhotographersDone ? <LoadingGif /> : (
                 <>
-                    <Search 
-                    searchValue={searchValue}
-                    setSearchValue={setSearchValue}
-                     />
+                    <Search
+                        searchValue={searchValue}
+                        setSearchValue={setSearchValue}
+                    />
                     <div className="photographers">
                         {photographersToDisplay?.map((photographer: any) => (
                             <div className="photographer-block" key={photographer.id} onClick={() => navigate(`/photographer/${photographer.id}`)}>
@@ -83,7 +83,6 @@ const Photographers = () => {
                         activePage={activePage}
                         paginationBtns={paginationBtns}
                         setActivePage={setActivePage}
-                        lastPage={photographersData.last_page}
                     />
                 </>
             )}

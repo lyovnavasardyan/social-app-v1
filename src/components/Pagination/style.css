@@ -11,7 +11,13 @@
     border-radius: 8px;
     border: none;
     box-shadow: 1px 1px 2px rgb(128, 128, 128);
+    cursor: pointer;
+    transition: 0.1s linear;
     
+}
+
+.pagination_div > button:hover {
+    scale: 1.1;
 }
 
 .active_page_btn {

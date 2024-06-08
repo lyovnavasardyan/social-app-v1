@@ -10,6 +10,8 @@ interface ModalProps {
 
 const Modal: React.FC<ModalProps> = ({shouldShow ,onRequestClose, children }) => {
 
+        
+
    return shouldShow? (
         <section className="modal_section">
              <IoClose className="close" onClick={onRequestClose}/>
