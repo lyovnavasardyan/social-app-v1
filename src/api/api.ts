@@ -21,8 +21,9 @@ export const fetchData = {
     getAllPhotographers(page = 1){
         return axios.get(`https://pinetech.org/api/photographers?page=${page}`)
     },
-    getSinglePhotographer(data:any){
-        return axios.post('https://pinetech.org/api/get-photographer-photos',data,{
+    getSinglePhotographer(data: object){
+            
+        return axios.post(`https://pinetech.org/api/get-photographer-photos?page=${data.currentPage}`,data,{
             headers:{
                 "Content-Type":'application/json'
             }

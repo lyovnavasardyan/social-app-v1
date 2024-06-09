@@ -11,10 +11,9 @@ const Nav = () => {
         <nav>
             {
                 menuButtonsInfo.map((button) => {
-                    let { id } = button
 
                     return <button
-                        key={id}
+                        key={button.id}
                         className={button.className}
                         onClick={() => navigate(button.path)}
                     >{button.text}</button>

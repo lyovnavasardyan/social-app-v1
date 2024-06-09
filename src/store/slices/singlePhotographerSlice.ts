@@ -4,17 +4,20 @@ import { fetchData } from "../../api/api";
 const initialState = {
   photographer: null,
   photos: [],
+  page: 1,
   loading: false,
-  error: null
+  error: null,
 };
 
 export const getPhotographerById = createAsyncThunk(
   'photographer/getById',
   async (userId, { rejectWithValue }) => {
     try {
-      const response = await fetchData.getSinglePhotographer({ userId });
+      const response = await fetchData.getSinglePhotographer({ userId, currentPage: 1 });
+      console.log(response.data.data);
+
       return response.data;
-    } catch (error:any) {
+    } catch (error: any) {
       if (error.response && error.response.data) {
         return rejectWithValue(error.response.data);
       }
@@ -38,14 +41,14 @@ const photographerSlice = createSlice({
         state.photographer = payload.data.data[0].user;
         state.photos = payload.data.data;
       })
-      .addCase(getPhotographerById.rejected, (state:any, { payload }) => {
+      .addCase(getPhotographerById.rejected, (state: any, { payload }) => {
         state.loading = false;
         state.error = payload;
       });
   }
 });
 
-const mainState = (state:any) => state;
+const mainState = (state: any) => state;
 
 export const photographer = createSelector(mainState, (state) => state.singlePhotographerData.photographer);
 export const photos = createSelector(mainState, (state) => state.singlePhotographerData.photos);

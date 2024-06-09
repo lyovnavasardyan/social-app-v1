@@ -8,6 +8,7 @@ import allUserPhotosSlice from "./slices/allUserPhotosSlice";
 import allPhotographersSlice from "./slices/photographers";
 import singlePhotographerSlice from "./slices/singlePhotographerSlice";
 import searchedPhotographerSlice from "./slices/searchedPhotographerSlice";
+import modalPhotoSlice from "./slices/modalPhotoSlice";
 
 const store = configureStore({
     reducer: {
@@ -19,7 +20,8 @@ const store = configureStore({
         allUserPhotosData: allUserPhotosSlice,
         allPhotographersData:allPhotographersSlice,
         singlePhotographerData:singlePhotographerSlice,
-        searchedPhotographerData:searchedPhotographerSlice
+        searchedPhotographerData:searchedPhotographerSlice,
+        modalPhotoData: modalPhotoSlice
     }
 })
 

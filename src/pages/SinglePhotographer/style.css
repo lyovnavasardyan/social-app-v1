@@ -61,3 +61,20 @@
 .photographer-photo:hover {
   scale: 1.05;
 }
+
+.more {
+  width: 100px;
+  height: 30px;
+  border: 1px solid mediumslateblue;
+  border-radius: 8px;
+  color: mediumslateblue;
+  background-color: white;
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.1s linear;
+}
+
+.more:hover {
+  background-color: mediumslateblue;
+  color: white;
+}

@@ -13,7 +13,7 @@ export const menuButtonsInfo: ButtonType[] = [
         id: 2,
         text: "Photos",
         className: 'photos_btn',
-        path: "/photos"
+        path: "photos"
     }
 ]
 
