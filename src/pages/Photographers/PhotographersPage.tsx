@@ -6,7 +6,7 @@ import { useCustomDispatch } from "../../customHooks/customHooks";
 import LoadingGif from "../../../public/LoadingGif/loadingGif";
 import { BACKEND_URL } from "../../config/config";
 import './style.css';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDebounce } from "../../customHooks/useDebounce";
 import Pagination from "../../components/Pagination/Pagination";
 import Search from "../../components/Search/Search";
@@ -20,8 +20,8 @@ const Photographers = () => {
     const [searchValue, setSearchValue] = useState('');
     const debouncedValue = useDebounce(searchValue, 500);
     const searchedPhotographerInfo = useSelector(searchedPhotographers);
-
-    const [activePage, setActivePage] = useState(1)
+    const {page} = useParams()
+    const [activePage, setActivePage] = useState(Number(page) || 1)
 
     const definePaginationBtns = () => {
         const pageNumbers = []
@@ -39,8 +39,8 @@ const Photographers = () => {
     }, [debouncedValue, dispatch]);
 
     useEffect(() => {
-        dispatch(getAllPhotographers());
-    }, [dispatch]);
+        dispatch(getAllPhotographers(activePage));
+    }, [dispatch, activePage]);
 
     useEffect(() => {
         if (debouncedValue) {

@@ -7,7 +7,7 @@ export const menuButtonsInfo: ButtonType[] = [
         id: 1,
         text: "Photographers",
         className: 'photographers_btn',
-        path: "photographers"
+        path: "photographers/:page"
     },
     {
         id: 2,
