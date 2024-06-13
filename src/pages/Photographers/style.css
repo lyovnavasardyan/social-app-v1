@@ -1,7 +1,60 @@
-.photographers_page_div{
+
+.main-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 100%;
+}
+
+.categories-container {
+    flex: 0 0 250px; /* Fixed width for categories section */
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 100vh;
+    overflow-y: auto;
+    position: sticky;
+    top: 0;
+}
+
+.categories-heading {
+    text-align: center;
+    font-size: 1.5em;
+    color: #343a40;
+    margin-bottom: 20px;
+}
+
+.categories-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.category-item {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    color: #495057;
+    transition: background-color 0.3s, transform 0.3s;
+    cursor:pointer;
+}
+
+.category-item:hover {
+    background-color: mediumslateblue;
+    color:white;
+    transform: translateY(-2px);
+}
+
+.photographers-content {
+    flex-grow: 1; /* This will take the remaining space */
+    padding: 20px;
+}
+
+.photographers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 photographers per row */
     gap: 20px;
 }
 
@@ -27,7 +80,7 @@
     margin: 5px 0;
 }
 
-.name{
+.name {
     cursor: pointer;
     border-bottom: 2px solid transparent;
 }
@@ -40,7 +93,6 @@
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 20px;
-    margin: 20px 0; 
     background-color: #f9f9f9;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -49,13 +101,6 @@
 .photographer-block:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.photographers {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    justify-content: center;
-    gap: 20px;
 }
 
 .photographer-block a {
@@ -69,12 +114,12 @@
 
 @media screen and (max-width: 1350px) {
     .photographers {
-        grid-template-columns: auto auto;
+        grid-template-columns: repeat(2, 1fr); /* 2 photographers per row for medium screens */
     }
 }
 
 @media screen and (max-width: 900px) {
     .photographers {
-        grid-template-columns: auto;
+        grid-template-columns: 1fr; /* 1 photographer per row for small screens */
     }
 }
