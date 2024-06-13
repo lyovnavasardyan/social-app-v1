@@ -3,6 +3,7 @@ import { buttonsInfo } from '../../../config/config'
 import { useNavigate } from 'react-router-dom'
 
 import './style.css'
+import Button from '../../SmallComponents/Button/Button'
 
 const SignButtons = () => {
     const navigate = useNavigate()
@@ -12,7 +13,16 @@ const SignButtons = () => {
             {
                 buttonsInfo.map((info) => {
                     return (
-                        <button onClick={() => navigate(info.path)} className={info.className} key={info.id}>{info.text}</button>
+                        
+                        <Button 
+                            key={info.id}
+                            size='large'
+                            width='100px'
+                            bgColor={info.bgColor}
+                            color={info.color}
+                            onClick={() => navigate(info.path)}
+                            text={info.text}
+                        />
                     )
                 })
             }

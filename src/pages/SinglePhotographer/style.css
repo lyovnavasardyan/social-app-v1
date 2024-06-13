@@ -62,7 +62,7 @@
   scale: 1.05;
 }
 
-.more {
+.photographer-profile .pagination_div button {
   width: 100px;
   height: 30px;
   border: 1px solid mediumslateblue;
@@ -74,7 +74,7 @@
   transition: 0.1s linear;
 }
 
-.more:hover {
+.photographer-profile .pagination_div button:hover {
   background-color: mediumslateblue;
   color: white;
 }

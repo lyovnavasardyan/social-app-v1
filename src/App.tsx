@@ -8,15 +8,9 @@ import ProfilePage from './pages/ProfilePage/ProfilePage'
 import PhotosPage from './pages/PhotosPage/PhotosPage'
 import Photos from './pages/Photos/Photos'
 import Photographers from './pages/Photographers/PhotographersPage'
-import ClickedPhotographer from './pages/SinglePhotographer/singlePhotographer'
+import SlinglePhotographer from './pages/SinglePhotographer/singlePhotographer'
 import Menu from './components/Menu/Menu'
 
-
-//todo 1 create reusable form component
-// todo create validation file config 
-// todo create reusable button and input components.
-//todo react hook form errorMessage component
-// create axios request file, or class ,  get post put delet
 
 function App() {
 
@@ -31,7 +25,7 @@ function App() {
         <Route path='/profile/photos' element={<PhotosPage />} />
         <Route path='/photos' element={<Photos />} />
         <Route path='/photographers/:page' element={<Photographers />} />
-        <Route path='/photographer/:userId' element={<ClickedPhotographer />} />
+        <Route path='/photographer/:userId' element={<SlinglePhotographer />} />
       </Routes>
     </div>
   )

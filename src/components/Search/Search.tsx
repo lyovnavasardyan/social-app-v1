@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from '../SmallComponents/Button/Button'
 
 interface InputProps {
     searchValue: string,
@@ -13,7 +14,14 @@ const Search: React.FC<InputProps> = ({ searchValue, setSearchValue }) => {
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
             />
-            <button>Search</button>
+            <Button
+                size='small'
+                usage='button'
+                bgColor='white'
+                color='black'
+                text='Search'
+                
+            />
         </div>
     )
 }

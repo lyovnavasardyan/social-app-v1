@@ -8,6 +8,7 @@ import Modal from '../../components/Modal';
 import PhotoModal from '../../components/PhotoModal/PhotoModal';
 import RandomPhotos from '../../components/RandomPhotos/randomPhotos';
 import { getRandomPhotos } from '../../store/slices/modalPhotoSlice';
+import Image from '../../components/SmallComponents/Image/Image';
 
 
 const PhotographerProfile = () => {
@@ -16,14 +17,19 @@ const PhotographerProfile = () => {
   const clickedPhotographer = useSelector(photographer);
   const ownPhotos = useSelector(photos);
   const isloading = useSelector(loading);
-  
+
 
   const [photoModalInfo, setPhotoModalInfo] = useState({ photoData: {} })
   const [showModal, setShowModal] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1)
+
+  const obj = { userId, currentPage: currentPage }
 
   useEffect(() => {
-    dispatch(getPhotographerById(userId));
-  }, [userId]);
+    if (currentPage >= 1 && currentPage <= 5) {
+      dispatch(getPhotographerById(obj));
+    }
+  }, [userId, currentPage]);
 
   if (isloading) {
     return <div>Loading...</div>;
@@ -32,12 +38,12 @@ const PhotographerProfile = () => {
 
   if (!clickedPhotographer) {
     return <div>No data found</div>;
-  }
+  }  
 
   return (
     <div className="photographer-profile">
       <div className="photographer-info">
-        <img src={`${BACKEND_URL}${clickedPhotographer?.avatar}`} className="avatar" alt="Photographer Avatar" />
+        <Image url={BACKEND_URL + clickedPhotographer?.avatar} className="avatar" alt='avatar' />
         <h2>{clickedPhotographer.name}</h2>
         <p>{clickedPhotographer.email}</p>
         <p>{clickedPhotographer.phone}</p>
@@ -63,8 +69,17 @@ const PhotographerProfile = () => {
           />
         })}
       </div>
-      <div className='more_btn_div'>
-        <button className='more'>More</button>
+      <div className='pagination_div'>
+        <button onClick={() => {
+          if(currentPage > 1) {
+            setCurrentPage(() => currentPage - 1)
+          }
+        }} className='prev'>Prev</button>
+        <button onClick={() => {
+          if(currentPage < 5) {
+            setCurrentPage(() => currentPage + 1)
+          }
+        }} className='next'>Next</button>
       </div>
       <Modal
         shouldShow={showModal}

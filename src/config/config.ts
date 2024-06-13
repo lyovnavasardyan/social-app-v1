@@ -22,13 +22,17 @@ export const buttonsInfo: ButtonType[] = [
         id: 1,
         text: "Log in",
         className: 'login_btn',
-        path: "login"
+        path: "login",
+        bgColor: "white",
+        color: 'mediumslateblue'
     },
     {
         id: 2,
         text: "Register",
         className: 'register_btn',
-        path: "register"
+        path: "register",
+        bgColor: "mediumslateblue",
+        color: 'white'
     }
 ]
 

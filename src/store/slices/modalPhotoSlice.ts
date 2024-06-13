@@ -11,27 +11,9 @@ const initialState: ModalPhotoState = {
     done: false
 }
 
-// export const uploadPhoto = createAsyncThunk(
-//     'photo/upload',
-//     async (_, { rejectWithValue }) => {
-
-//         try {
-//             const res = await axios.post('https://pinetech.org/api/add-single-photo', formData, {
-//                 headers: {
-//                     "Content-Type": "multipart/form-data",
-//                     'Authorization': `Bearer ${initialState.token}`
-//                 }
-//             })
-//             return res.data
-//         } catch (error) {
-//             return rejectWithValue('upload error')
-//         }
-//     }
-// )
-
 export const getRandomPhotos = createAsyncThunk(
     'modal-photos',
-    async (data, {rejectWithValue}) => {
+    async (data, { rejectWithValue }) => {
         try {
             const response = await axios.post(
                 "https://pinetech.org/api/get-random-photos-by-category",
@@ -45,7 +27,6 @@ export const getRandomPhotos = createAsyncThunk(
                     }
                 }
             );
-            console.log(response.data);
 
             return response.data;
         } catch (error) {

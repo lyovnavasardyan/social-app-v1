@@ -4,19 +4,19 @@ import { fetchData } from "../../api/api";
 const initialState = {
   photographer: null,
   photos: [],
-  page: 1,
   loading: false,
   error: null,
 };
 
 export const getPhotographerById = createAsyncThunk(
   'photographer/getById',
-  async (userId, { rejectWithValue }) => {
+  async (data, { rejectWithValue }) => {
     try {
-      const response = await fetchData.getSinglePhotographer({ userId, currentPage: 1 });
-      console.log(response.data.data);
+      const response = await fetchData.getSinglePhotographer(data);
 
       return response.data;
+
+
     } catch (error: any) {
       if (error.response && error.response.data) {
         return rejectWithValue(error.response.data);
@@ -37,7 +37,7 @@ const photographerSlice = createSlice({
         state.error = null;
       })
       .addCase(getPhotographerById.fulfilled, (state, { payload }) => {
-        state.loading = false;
+        state.loading = false;  
         state.photographer = payload.data.data[0].user;
         state.photos = payload.data.data;
       })

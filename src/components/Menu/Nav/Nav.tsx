@@ -3,6 +3,7 @@ import React from 'react'
 import './style.css'
 import { menuButtonsInfo } from '../../../config/config'
 import { useNavigate } from 'react-router-dom'
+import Button from '../../SmallComponents/Button/Button'
 
 const Nav = () => {
     const navigate = useNavigate()
@@ -12,11 +13,16 @@ const Nav = () => {
             {
                 menuButtonsInfo.map((button) => {
 
-                    return <button
+                    return <Button
                         key={button.id}
-                        className={button.className}
+                        text={button.text}
+                        color='mediumslateblue'
+                        bgColor='white'
+                        size='large'
+                        usage='menu'
                         onClick={() => navigate(button.path)}
-                    >{button.text}</button>
+                    />
+
                 })
             }
         </nav>
