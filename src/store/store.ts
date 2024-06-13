@@ -8,6 +8,7 @@ import allUserPhotosSlice from "./slices/allUserPhotosSlice";
 import allPhotographersSlice from "./slices/photographers";
 import singlePhotographerSlice from "./slices/singlePhotographerSlice";
 import searchedPhotographerSlice from "./slices/searchedPhotographerSlice";
+import categorizedPhotographersSlice from "./slices/categorizedPhotographers";
 import modalPhotoSlice from "./slices/modalPhotoSlice";
 
 const store = configureStore({
@@ -21,7 +22,8 @@ const store = configureStore({
         allPhotographersData:allPhotographersSlice,
         singlePhotographerData:singlePhotographerSlice,
         searchedPhotographerData:searchedPhotographerSlice,
-        modalPhotoData: modalPhotoSlice
+        modalPhotoData: modalPhotoSlice,
+        categorizedPhotographersData:categorizedPhotographersSlice
     }
 })
 

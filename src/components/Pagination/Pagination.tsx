@@ -12,7 +12,7 @@ interface PaginationProps {
 
 const Pagination: React.FC<PaginationProps> = ({ paginationBtns, activePage, setActivePage }) => {
     const navigate = useNavigate();
-    console.log(paginationBtns)
+   
 
     useEffect(() => {
         navigate(`/photographers/${activePage}`);

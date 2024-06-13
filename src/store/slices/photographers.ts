@@ -4,7 +4,7 @@ import { fetchData } from "../../api/api";
 
 const initialState = {
     photographers: [],
-    done: false
+    done: false,
 }
 
 export const getAllPhotographers = createAsyncThunk(

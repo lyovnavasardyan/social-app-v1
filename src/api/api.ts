@@ -36,5 +36,13 @@ export const fetchData = {
             }
         })
     },
+    searchSelectedCategory(id:number){
+        return axios.get(`https://pinetech.org/api/photographers?category=${id}`, {
+                
+            headers: {
+                "Content-Type": 'application/json'
+            }
+        });
+    }
 }
 
