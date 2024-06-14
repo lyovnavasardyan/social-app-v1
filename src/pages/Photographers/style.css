@@ -30,13 +30,11 @@
 }
 
 .category-item {
-    background-color: #ffffff;
     border: 1px solid #dee2e6;
     border-radius: 4px;
     padding: 10px 15px;
     margin-bottom: 10px;
     font-size: 1.2em;
-    color: #495057;
     transition: background-color 0.3s, transform 0.3s;
     cursor:pointer;
 }
@@ -54,7 +52,7 @@
 
 .photographers {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 photographers per row */
+    grid-template-columns: repeat(2, 1fr); /* 2 photographers per row */
     gap: 20px;
 }
 
@@ -110,12 +108,6 @@
 
 .photographer-block a:hover {
     text-decoration: underline;
-}
-
-@media screen and (max-width: 1350px) {
-    .photographers {
-        grid-template-columns: repeat(2, 1fr); /* 2 photographers per row for medium screens */
-    }
 }
 
 @media screen and (max-width: 900px) {

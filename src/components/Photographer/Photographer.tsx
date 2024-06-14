@@ -9,7 +9,7 @@ const Photographer: React.FC = ({ photographer }) => {
     const navigate = useNavigate()
     
     return (
-        <div className="photographer-block" key={photographer.id} onClick={() => navigate(`/photographer/${photographer.id}`)}>
+        <div onClick={() => navigate(`/photographer/${photographer.id}`)} className="photographer-block" key={photographer.id} onClick={() => navigate(`/photographer/${photographer.id}`)}>
             <div className="header">
                 <Image url={BACKEND_URL + photographer?.avatar} className='avatar' alt={photographer?.name} />
                 <div className="info">

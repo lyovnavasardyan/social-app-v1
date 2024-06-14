@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPhotographerById, photographer, photos, loading, page } from '../../store/slices/singlePhotographerSlice';
+import { getPhotographerById, photographer, photos, loading, page, lastPage } from '../../store/slices/singlePhotographerSlice';
 import './style.css';
 import { BACKEND_URL } from '../../config/config';
 import Modal from '../../components/Modal';
@@ -24,6 +24,8 @@ const PhotographerProfile = () => {
   const [currentPage, setCurrentPage] = useState(1)
 
   const obj = { userId, currentPage: currentPage }
+
+  
 
   useEffect(() => {
     if (currentPage >= 1 && currentPage <= 5) {

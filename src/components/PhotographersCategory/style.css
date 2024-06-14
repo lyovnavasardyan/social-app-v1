@@ -1,0 +1,10 @@
+
+.active_category {
+    background-color: mediumslateblue;
+    color: white;
+}
+
+.category {
+    background-color: white;
+    color: gray;
+}

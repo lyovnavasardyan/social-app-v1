@@ -3,9 +3,7 @@ import { createAsyncThunk, createSelector, createSlice } from "@reduxjs/toolkit"
 import { fetchData } from "../../api/api";
 
 const initialState = {
-    
-    selectedCategory:null
-    
+    selectedCategory: null
 }
 
 export const searchSelectedCategory = createAsyncThunk(
@@ -36,16 +34,16 @@ const categorizedPhotographersSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(searchSelectedCategory.fulfilled, (state, { payload }) => {
-               
+
                 state.selectedCategory = payload.data
             })
-          
+
     },
 })
 
-const mainState = (state:any) => state;
+const mainState = (state: any) => state;
 
-export const selectedCategory = createSelector(mainState, (state) => state. categorizedPhotographersData.selectedCategory)
+export const selectedCategory = createSelector(mainState, (state) => state.categorizedPhotographersData.selectedCategory)
 
 
 export default categorizedPhotographersSlice.reducer;

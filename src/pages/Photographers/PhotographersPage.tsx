@@ -10,6 +10,7 @@ import Pagination from "../../components/Pagination/Pagination";
 import Search from "../../components/Search/Search";
 import PhotographersCategory from "../../components/PhotographersCategory/photographersCategory";
 import { selectedCategory } from "../../store/slices/categorizedPhotographers";
+import Photographer from "../../components/Photographer/Photographer";
 
 import './style.css';
 
@@ -23,7 +24,7 @@ const Photographers = () => {
     const searchedPhotographerInfo = useSelector(searchedPhotographers);
     const { page } = useParams()
     const [activePage, setActivePage] = useState(Number(page) || 1)
-   
+    const [filtered, setFiltered] = useState(false)
 
     const definePaginationBtns = () => {
         const pageNumbers = [];
@@ -35,28 +36,42 @@ const Photographers = () => {
 
     const handleSearch = useCallback(async () => {
         if (debouncedValue) {
-            await dispatch(searchPhotographerPage(debouncedValue));
+            dispatch(searchPhotographerPage(debouncedValue));
             console.log(debouncedValue);
         }
     }, [debouncedValue]);
 
     useEffect(() => {
         dispatch(getAllPhotographers(activePage));
+        window.scrollTo(0, 0)
     }, [activePage]);
 
     useEffect(() => {
         if (debouncedValue) {
             handleSearch();
         }
-    }, [debouncedValue, handleSearch]);
+    }, [debouncedValue, page]);
 
-    const photographersToDisplay = debouncedValue ? searchedPhotographerInfo : photographersData.data;
+    // const photographersToDisplay = debouncedValue ? searchedPhotographerInfo : photographersData.data;
+
+    const photographersToDisplay = () => {
+        if (debouncedValue && !selectCategory) {
+            return searchedPhotographerInfo
+        } else if (debouncedValue && selectCategory) {
+            return searchedPhotographerInfo
+        } else if (!debouncedValue && selectCategory) {
+            return selectCategory.data
+        } else {
+            return photographersData.data
+
+        }
+    }
 
     const paginationBtns = definePaginationBtns();
 
     return (
         <div className="main-container">
-       <PhotographersCategory/>
+            <PhotographersCategory setFiltered={setFiltered} activePage={activePage} />
             <div className="photographers-content">
                 {!isPhotographersDone ? (
                     <LoadingGif />
@@ -67,49 +82,19 @@ const Photographers = () => {
                             setSearchValue={setSearchValue}
                         />
                         <div className="photographers">
-                            {selectCategory ? (
-                                selectCategory.data.map((photographer) => (
-                                    <div className="photographer-block" key={photographer.id} onClick={() => navigate(`/photographer/${photographer.id}`)}>
-                                        <div className="header">
-                                            <img className="avatar" src={`${BACKEND_URL}${photographer?.avatar}`} alt={photographer?.name} />
-                                            <div className="info">
-                                                <h5 className="name">{photographer?.name}</h5>
-                                                <h5>{photographer?.email}</h5>
-                                                <h5>
-                                                    <a href={photographer?.fb} target="_blank" rel="noopener noreferrer">
-                                                        Facebook Profile
-                                                    </a>
-                                                </h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))
-                            ) : (
-                                photographersToDisplay?.map((photographer) => (
-                                    <div className="photographer-block" key={photographer.id} onClick={() => navigate(`/photographer/${photographer.id}`)}>
-                                        <div className="header">
-                                            <img className="avatar" src={`${BACKEND_URL}${photographer?.avatar}`} alt={photographer?.name} />
-                                            <div className="info">
-                                                <h5 className="name">{photographer?.name}</h5>
-                                                <h5>{photographer?.email}</h5>
-                                                <h5>
-                                                    <a href={photographer?.fb} target="_blank" rel="noopener noreferrer">
-                                                        Facebook Profile
-                                                    </a>
-                                                </h5>
-                                            </div>
-                                        </div>
-                                    </div>
+                            {(
+                                photographersToDisplay()?.map((photographer) => (
+                                    <Photographer key={photographer.id} photographer={photographer} />
                                 ))
                             )}
                         </div>
-                        {!selectedCategory && (
+                        {/* {!filtered && ( */}
                             <Pagination
                                 activePage={activePage}
                                 paginationBtns={paginationBtns}
                                 setActivePage={setActivePage}
                             />
-                        )}
+                        {/* )} */}
                     </>
                 )}
             </div>
