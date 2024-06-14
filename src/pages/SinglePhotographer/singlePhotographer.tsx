@@ -18,7 +18,6 @@ const PhotographerProfile = () => {
   const ownPhotos = useSelector(photos);
   const isloading = useSelector(loading);
 
-
   const [photoModalInfo, setPhotoModalInfo] = useState({ photoData: {} })
   const [showModal, setShowModal] = useState(false);
   const [currentPage, setCurrentPage] = useState(1)
@@ -33,10 +32,10 @@ const PhotographerProfile = () => {
     }
   }, [userId, currentPage]);
 
+
   if (isloading) {
     return <div>Loading...</div>;
   }
-
 
   if (!clickedPhotographer) {
     return <div>No data found</div>;
@@ -88,7 +87,7 @@ const PhotographerProfile = () => {
         onRequestClose={() => setShowModal(false)}
       >
         <PhotoModal photoInfo={photoModalInfo.photoData} />
-        <RandomPhotos />
+        <RandomPhotos setPhotoModalInfo={setPhotoModalInfo} />
       </Modal>
 
     </div>

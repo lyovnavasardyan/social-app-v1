@@ -20,21 +20,21 @@ interface PhotoInt {
     setPhotoModalInfo: any
 }
 
-const PhotoModal: React.FC<PhotoInt> = ({ photoInfo}) => {
+const PhotoModal: React.FC<PhotoInt> = ({ photoInfo }) => {
 
     window.scrollTo(0, 0)
-    
-  return (
-    <div className='photo_modal_div'>
-        <div className="photo_info_div">
-            <h2>{photoInfo.user.name}</h2>
-            <h4>{photoInfo.views} views</h4>
-            <h4>Created at {photoInfo.created_at.slice(0, 10)}</h4>
-        </div>
-        <img src={BACKEND_URL + photoInfo.small} alt="photo" />
 
-    </div>
-  )
+    return (
+        <div className='photo_modal_div'>
+            <div className="photo_info_div">
+                <h2>{photoInfo.user.name}</h2>
+                <h4>{photoInfo.views} views</h4>
+                <h4>Created at {photoInfo.created_at.slice(0, 10)}</h4>
+            </div>
+            <img src={BACKEND_URL + photoInfo.small} alt="photo" />
+
+        </div>
+    )
 }
 
 export default PhotoModal
