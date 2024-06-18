@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './style.css'
 import Button from '../SmallComponents/Button/Button';
+import { useParams } from 'react-router-dom';
 
 
 interface PaginationProps {
@@ -12,18 +13,23 @@ interface PaginationProps {
 
 const Pagination: React.FC<PaginationProps> = ({ paginationBtns, activePage, setActivePage }) => {
     const navigate = useNavigate();
-   
+    const { categoryId } = useParams();
 
-    useEffect(() => {
-        navigate(`/photographers/${activePage}`);
-    }, [activePage, navigate]);
+    const handlePageChange = (page: number) => {
+        setActivePage(page);
+        if (categoryId) {
+            navigate(`/photographers/${categoryId}/${page}`);
+        } else {
+            navigate(`/photographers/${page}`);
+        }
+    };
 
     return (
         <div className="pagination_div">
             {paginationBtns.map((page, i) => (
                 <Button
                     className={activePage === page ? "active_page_btn" : "page_btn"}
-                    onClick={() => setActivePage(page)}
+                    onClick={() => handlePageChange(page)}
                     key={i}
                     usage='pagination'
                     width='30px'
@@ -32,7 +38,7 @@ const Pagination: React.FC<PaginationProps> = ({ paginationBtns, activePage, set
                 />
             ))}
         </div>
-    )
+    );
 }
 
-export default Pagination
+export default Pagination;

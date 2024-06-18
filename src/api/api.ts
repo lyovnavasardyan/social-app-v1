@@ -1,5 +1,7 @@
 import axios from "axios"
 
+const BASE_URL = 'https://pinetech.org/api/photographers';
+
 export const fetchData = {
     sendRegisterData(data: object) {
         return axios.post('https://pinetech.org/api/auth/register', data, {
@@ -18,9 +20,15 @@ export const fetchData = {
     getAllPhotos() {
         return axios.get('https://pinetech.org/api/photos')
     },
-    getAllPhotographers(page = 1){
-        return axios.get(`https://pinetech.org/api/photographers?page=${page}`)
+    getAllPhotographers(params:any) {
+        return axios.get(`https://pinetech.org/api/photographers?`, {
+            params,
+            headers: {
+                "Content-Type": 'application/json'
+            }
+        });
     },
+    
     getSinglePhotographer(data: object){
             
         return axios.post(`https://pinetech.org/api/get-photographer-photos?page=${data.currentPage}`,data,{
@@ -36,13 +44,5 @@ export const fetchData = {
             }
         })
     },
-    searchSelectedCategory(id:number){
-        return axios.get(`https://pinetech.org/api/photographers?category=${id}`, {
-                
-            headers: {
-                "Content-Type": 'application/json'
-            }
-        });
-    }
 }
 

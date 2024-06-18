@@ -12,6 +12,7 @@ import SlinglePhotographer from './pages/SinglePhotographer/singlePhotographer'
 import Menu from './components/Menu/Menu'
 
 
+
 function App() {
 
   return (
@@ -24,7 +25,9 @@ function App() {
         <Route path='/profile' element={<ProfilePage />} />
         <Route path='/profile/photos' element={<PhotosPage />} />
         <Route path='/photos' element={<Photos />} />
-        <Route path='/photographers/:page' element={<Photographers />} />
+        <Route path='/photographers' element={<Photographers />} />
+                <Route path='/photographers/:page' element={<Photographers />} />
+                <Route path='/photographers/:categoryId/:page' element={<Photographers />} />
         <Route path='/photographer/:userId' element={<SlinglePhotographer />} />
       </Routes>
     </div>

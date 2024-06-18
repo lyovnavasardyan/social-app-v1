@@ -5,17 +5,21 @@ import { fetchData } from "../../api/api";
 const initialState = {
     photographers: [],
     done: false,
-}
+    selectedCategory: null,
+};
 
 export const getAllPhotographers = createAsyncThunk(
-    'api/photographers',
-    async (page, { rejectWithValue }) => {
+    'photographers/fetchPhotographers',
+    async ({ id, page }, { rejectWithValue }) => {
         try {
-            const response = await fetchData.getAllPhotographers(page);
+            const params = {};
+            if (id) params.category = id;
+            if (page) params.page = page;
+
+            const response = await fetchData.getAllPhotographers(params);
 
             return response.data;
-        } catch (error: any) {
-
+        } catch (error) {
             if (error.response && error.response.data) {
                 return rejectWithValue(error.response.data);
             }
@@ -23,35 +27,35 @@ export const getAllPhotographers = createAsyncThunk(
             return rejectWithValue({ message: 'An unknown error occurred' });
         }
     }
-
 );
 
-
-
-const allPhotographersSlice = createSlice({
-    name: 'allPhotographersSlice',
+const photographersSlice = createSlice({
+    name: 'photographers',
     initialState,
-    reducers: {
-
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(getAllPhotographers.pending, (state) => {
-                state.done = false
+                state.done = false;
             })
             .addCase(getAllPhotographers.fulfilled, (state, { payload }) => {
-                state.done = true
-                state.photographers = payload.data
+                state.done = true;
+                state.photographers = payload.data;
+
+                if (payload.category) {
+                    state.selectedCategory = payload.data;
+                }
             })
             .addCase(getAllPhotographers.rejected, (state) => {
-                state.done = false
+                state.done = false;
             });
     },
-})
+});
 
 const mainState = (state) => state;
 
-export const photographers = createSelector(mainState, (state) => state.allPhotographersData.photographers)
-export const done = createSelector(mainState, (state) => state?.allPhotographersData.done)
+export const photographers = createSelector(mainState, (state) => state.allPhotographersData.photographers);
+export const done = createSelector(mainState, (state) => state.allPhotographersData.done);
+export const selectedCategory = createSelector(mainState, (state) => state.allPhotographersData.selectedCategory);
 
-export default allPhotographersSlice.reducer
+export default photographersSlice.reducer;
