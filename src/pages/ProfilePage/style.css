@@ -80,3 +80,18 @@
     background-color: white;
     color:mediumslateblue;
 }
+
+.move_to_avatar {
+    width: 100px;
+    height: 30px;
+    border: 1px solid mediumslateblue;
+    border-radius: 5px;
+    font-size: 14px;  /* Adjusted font size for better fit */
+    transition: 0.1s linear;
+    cursor: pointer;
+    background-color: white;
+    color: mediumslateblue;
+    overflow: hidden; /* Ensure text wraps within the button */
+    text-overflow: ellipsis; /* Show ellipsis if text exceeds button width */
+    white-space: nowrap; /* Prevent text from wrapping onto multiple lines */
+}

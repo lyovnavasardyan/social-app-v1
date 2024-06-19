@@ -118,6 +118,7 @@ const ProfilePage: React.FC = () => {
                 <button className="details-button" onClick={detailsButtonHandler}>{detailsButton ? "Save" : "Details"}</button>
             )}
             <button onClick={() => navigate('/profile/photos')} className='move_to_photos'>Photos</button>
+            <button onClick={()=>navigate('/profile/profile-photo')}className='move_to_avatar'> Upload Avatar</button>
             <ToastContainer />
         </div>
     );

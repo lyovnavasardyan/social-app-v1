@@ -10,6 +10,7 @@ import Photos from './pages/Photos/Photos'
 import Photographers from './pages/Photographers/PhotographersPage'
 import SlinglePhotographer from './pages/SinglePhotographer/singlePhotographer'
 import Menu from './components/Menu/Menu'
+import ProfilePhoto from './pages/ProfilePhoto/profilePhoto'
 
 
 
@@ -24,6 +25,7 @@ function App() {
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/profile' element={<ProfilePage />} />
         <Route path='/profile/photos' element={<PhotosPage />} />
+        <Route path = '/profile/profile-photo' element = {<ProfilePhoto/>}/>
         <Route path='/photos' element={<Photos />} />
         <Route path='/photographers' element={<Photographers />} />
                 <Route path='/photographers/:page' element={<Photographers />} />
