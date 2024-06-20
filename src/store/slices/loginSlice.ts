@@ -1,11 +1,10 @@
 import { createAsyncThunk, createSelector, createSlice } from "@reduxjs/toolkit";
-import axios from 'axios';
 import { fetchData } from "../../api/api";
 
 
 const initialState = {
     title: 'Login',
-    authenticated: false,
+    authenticated: !!localStorage.getItem('jwtToken'),
     token: null,
     isFetching: false,
     error: null,
@@ -28,6 +27,13 @@ export const loginAsync = createAsyncThunk(
     }
 );
 
+export const logOutAsync = createAsyncThunk(
+    'auth.logout',
+    async () => {
+        localStorage.removeItem('jwtToken')
+    }
+)
+
 const loginSlice = createSlice({
     name: 'auth',
     initialState,
@@ -48,6 +54,10 @@ const loginSlice = createSlice({
                 state.isFetching = false;
                 state.error = action.payload.message || 'Email or password are incorrect';
             });
+
+        builder.addCase(logOutAsync.fulfilled, (state) => {
+            state.authenticated = false
+        })
     },
 });
 

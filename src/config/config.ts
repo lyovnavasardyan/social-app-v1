@@ -14,6 +14,12 @@ export const menuButtonsInfo: ButtonType[] = [
         text: "Photos",
         className: 'photos_btn',
         path: "photos"
+    },
+    {
+        id: 3,
+        text: "Profile",
+        className: 'profile_btn',
+        path: "profile"
     }
 ]
 
