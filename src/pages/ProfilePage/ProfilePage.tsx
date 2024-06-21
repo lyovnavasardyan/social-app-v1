@@ -5,7 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Rootstate } from '../../store/store';
 import { ToastContainer } from 'react-toastify';
-
+import PhotosPage from '../PhotosPage/PhotosPage';
+import ProfilePhoto from '../ProfilePhoto/profilePhoto';
+import CoverPhoto from '../CoverPhoto/coverPhoto';
 import { updateToast } from './toastupdate';
 import { useNavigate } from 'react-router-dom';
 
@@ -117,8 +119,9 @@ const ProfilePage: React.FC = () => {
             ) : (
                 <button className="details-button" onClick={detailsButtonHandler}>{detailsButton ? "Save" : "Details"}</button>
             )}
-            <button onClick={() => navigate('/profile/photos')} className='move_to_photos'>Photos</button>
-            <button onClick={()=>navigate('/profile/profile-photo')}className='move_to_avatar'> Upload Avatar</button>
+            <CoverPhoto/>
+            <ProfilePhoto/>
+            <PhotosPage/>
             <ToastContainer />
         </div>
     );

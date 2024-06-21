@@ -5,7 +5,7 @@ import { useCustomDispatch, useCustomSelector } from '../../customHooks/customHo
 import './style.css'
 
 
-const ProfilePhoto = () => {
+const CoverPhoto = () => {
   const dispatch = useCustomDispatch();
   const token = localStorage.getItem("jwtToken");
   const [file, setFile] = useState<File | null>(null);
@@ -14,33 +14,33 @@ const ProfilePhoto = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const { allPhotos } = useCustomSelector((state: RootState) => state.photosData);
-  
+
   const BASE_URL = "https://pinetech.org";
-  
+
   useEffect(() => {
     dispatch(getPhotos());
   }, [dispatch]);
-  
+
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
       setFile(event.target.files[0]);
       setFileName(event.target.files[0].name);
     }
   };
-  
+
   const handleUpload = async () => {
     if (!file) {
       setError("Please select a file first.");
       return;
     }
-  
+
     const formData = new FormData();
     formData.append('file', file);
-  
+
     try {
       setLoading(true);
       setError(null);
-      const response = await axios.post('https://pinetech.org/api/avatar', formData, {
+      const response = await axios.post('https://pinetech.org/api/cover', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`
@@ -53,28 +53,28 @@ const ProfilePhoto = () => {
       setLoading(false);
     }
   };
-  
+
+
+console.log(allPhotos)
   return (
-    <div className="profile-photo-container">
-      <div className="avatar-wrapper">
+    <div className="container">
+      <div className="cover-wrapper">
         {allPhotos.length > 0 && (
-          <img className="user-avatar" src={`${BASE_URL}${allPhotos[0].user.avatar}`} alt="avatar" />
-        )}
-      </div>
-      <div className="avatar-actions">
-        <label className="custom-file-upload">
-          Change Avatar
+         <img className="cover-photo" src={`${BASE_URL}/storage/${allPhotos[0].user.cover}`} alt="cover" />
+        ) }
+        <label className="cover-custom-file-upload">
+          +
           <input type="file" onChange={handleFileChange} className="file-input" />
         </label>
-        <button onClick={handleUpload} disabled={loading} className="upload-button">
-          {loading ? 'Uploading...' : 'Upload'}
-        </button>
       </div>
       <span>{fileName}</span>
+      <button onClick={handleUpload} disabled={loading} className="cover-upload-button">
+        {loading ? 'Uploading...' : 'Upload'}
+      </button>
       {data && <div className="success-message">Upload successful!</div>}
       {error && <div className="error-message">{error}</div>}
     </div>
   );
 };
-  
-export default ProfilePhoto;
+
+export default CoverPhoto;

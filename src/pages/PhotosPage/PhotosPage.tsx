@@ -44,24 +44,27 @@ const PhotosPage: React.FC = () => {
 
   return (
     <div className='photos_page'>
-      <div className="upload_div">
-        <input type="file" onChange={handleFileChange} />
-        <button onClick={handleUpload} disabled={uploading || !file}>
-          {uploading ? "uploading..." : "upload"}
-        </button>
-        {error && <div>error: {error}</div>}
-        {url && <div>url : {url}</div>}
-      </div>
-      <div className="all_photos_div">
-        <h2>All Photos</h2>
-        <div className="photos_div">
-            {allPhotos.map(photo => (
-                <img key={photo.id} src={`${BASE_URL}${photo.small}`} alt={photo.title || "photo"} />
-            ))}
-        </div>
-      </div>  
-      <ToastContainer/>
+    <div className="upload_div">
+      <label className="add_photo_label" style={{ backgroundColor: '#007bff', padding: '8px 12px', borderRadius: '4px', color: 'white', cursor: 'pointer' }}>
+        Add Photo
+        <input type="file" onChange={handleFileChange} style={{ display: 'none' }} />
+      </label>
+      <button className="upload_button" onClick={handleUpload} disabled={uploading || !file}>
+        {uploading ? 'Uploading...' : 'Upload'}
+      </button>
+      {error && <div className="error_message">Error: {error}</div>}
+      {url && <div className="url_message">URL: {url}</div>}
     </div>
+    <div className="all_photos_div">
+      <h2>All Photos</h2>
+      <div className="photos_div">
+        {allPhotos.map((photo) => (
+          <img key={photo.id} src={`${BASE_URL}${photo.small}`} alt={photo.title || 'photo'} />
+        ))}
+      </div>
+    </div>
+    <ToastContainer />
+  </div>
   )
 }
 

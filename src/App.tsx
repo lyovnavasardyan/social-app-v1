@@ -26,8 +26,6 @@ function App() {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/profile' element={<ProtectedRoute element={<ProfilePage />} />} />
-        <Route path='/profile/photos' element={<ProtectedRoute element={<PhotosPage />} />} />
-        <Route path='/profile/profile-photo' element={<ProtectedRoute element={<ProfilePhoto />} />} />
         <Route path='/photos' element={<Photos />} />
         <Route path='/photographers' element={<Photographers />} />
         <Route path='/photographers/:page' element={<Photographers />} />
