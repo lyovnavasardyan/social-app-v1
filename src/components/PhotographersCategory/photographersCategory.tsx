@@ -37,7 +37,7 @@ const PhotographersCategory = ({ setFiltered, onCategoryChange }) => {
                         setFiltered(false);
                         setActiveCategory(-1);
                         onCategoryChange(null);  
-                        navigate(`/photographers/1`);
+                        navigate(`/photographers?page=1`);
                     }}
                 >
                     All
@@ -46,7 +46,10 @@ const PhotographersCategory = ({ setFiltered, onCategoryChange }) => {
                     <li
                         className={`category-item ${activeCategory === category.id ? "active_category" : ''}`}
                         key={category.id}
-                        onClick={() => fetchSelectedCategory(category.id)}
+                        onClick={() => {
+                            fetchSelectedCategory(category.id);
+                            navigate(`/photographers?categoryId=${category.id}&page=1`);
+                        }}
                     >
                         {category.name}
                     </li>

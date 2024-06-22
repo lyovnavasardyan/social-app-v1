@@ -28,8 +28,6 @@ function App() {
         <Route path='/profile' element={<ProtectedRoute element={<ProfilePage />} />} />
         <Route path='/photos' element={<Photos />} />
         <Route path='/photographers' element={<Photographers />} />
-        <Route path='/photographers/:page' element={<Photographers />} />
-        <Route path='/photographers/:categoryId/:page' element={<Photographers />} />
         <Route path='/photographer/:userId' element={<SlinglePhotographer />} />
       </Routes>
     </div>
