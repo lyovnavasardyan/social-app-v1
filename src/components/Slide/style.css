@@ -1,0 +1,15 @@
+.slider_wrapper_large {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.slider_wrapper_small {
+    width: 700px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

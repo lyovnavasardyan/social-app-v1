@@ -12,6 +12,7 @@ import SlinglePhotographer from './pages/SinglePhotographer/singlePhotographer'
 import Menu from './components/Menu/Menu'
 import ProfilePhoto from './pages/ProfilePhoto/profilePhoto'
 import ProtectedRoute from './ProtectedRoute/ProtectedRoute'
+import Footer from './components/Footer/Footer'
 
 export const token = localStorage.getItem('jwtToken')
 
@@ -34,6 +35,7 @@ function App() {
         <Route path='/photographers/:categoryId/:page' element={<Photographers />} />
         <Route path='/photographer/:userId' element={<SlinglePhotographer />} />
       </Routes>
+      <Footer />
     </div>
   )
 }

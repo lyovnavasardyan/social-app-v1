@@ -11,4 +11,6 @@
   align-items: center;
   gap: 20px;
   padding: 20px;
+  padding-bottom: 200px;
+  position: relative;
 }

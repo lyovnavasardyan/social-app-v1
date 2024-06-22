@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice,createSelector } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, createSelector } from "@reduxjs/toolkit";
 import axios from "axios";
 
 interface PhotoState {
@@ -7,7 +7,7 @@ interface PhotoState {
     url: string | null,
     token: string | null,
     allPhotos: any
-    done:boolean
+    done: boolean
 }
 
 const initialState: PhotoState = {
@@ -16,7 +16,7 @@ const initialState: PhotoState = {
     url: null,
     token: localStorage.getItem("jwtToken"),
     allPhotos: [],
-    done:false
+    done: false
 }
 
 export const uploadPhoto = createAsyncThunk(
@@ -43,7 +43,7 @@ export const uploadPhoto = createAsyncThunk(
 
 export const getPhotos = createAsyncThunk(
     'photo/get',
-    async (_, {rejectWithValue}) => {
+    async (_, { rejectWithValue }) => {
         try {
             const res = await axios.get('https://pinetech.org/api/get-photos', {
                 headers: {
@@ -53,7 +53,7 @@ export const getPhotos = createAsyncThunk(
             })
 
             return res.data
-        } catch(error) {
+        } catch (error) {
             return rejectWithValue('failed geting photo')
         }
     }
@@ -88,7 +88,7 @@ const photosSlice = createSlice({
     }
 })
 
-const mainState = (state:any) => state;
+const mainState = (state: any) => state;
 
 export const isUploadedSelector = createSelector(
     mainState, (state) => state?.photosData.done);
