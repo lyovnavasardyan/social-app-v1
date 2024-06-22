@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import './style.css'
+import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import './style.css';
 import Button from '../SmallComponents/Button/Button';
-import { useParams } from 'react-router-dom';
-
 
 interface PaginationProps {
     paginationBtns: Array<number>,
@@ -13,14 +11,16 @@ interface PaginationProps {
 
 const Pagination: React.FC<PaginationProps> = ({ paginationBtns, activePage, setActivePage }) => {
     const navigate = useNavigate();
-    const { categoryId } = useParams();
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const categoryId = searchParams.get('categoryId') || null;
 
     const handlePageChange = (page: number) => {
         setActivePage(page);
         if (categoryId) {
-            navigate(`/photographers/${categoryId}/${page}`);
+            navigate(`/photographers?categoryId=${categoryId}&page=${page}`);
         } else {
-            navigate(`/photographers/${page}`);
+            navigate(`/photographers?page=${page}`);
         }
     };
 
@@ -39,6 +39,6 @@ const Pagination: React.FC<PaginationProps> = ({ paginationBtns, activePage, set
             ))}
         </div>
     );
-}
+};
 
 export default Pagination;

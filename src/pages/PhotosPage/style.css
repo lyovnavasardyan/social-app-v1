@@ -1,27 +1,50 @@
-.photos_page{
+.photos_page {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 100px;
-}
-
-.all_photos_div {
+    gap: 20px; 
+  }
+  
+  .upload_div {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+  }
+  
+  .add_photo_label {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #007bff; 
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .upload_button {
+    padding: 8px 12px;
+    background-color: #007bff; 
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .all_photos_div {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
-}
-
-.photos_div {
+  }
+  
+  .photos_div {
     display: grid;
     grid-template-columns: auto auto auto auto;
     justify-content: center;
-    align-items: center;
     gap: 20px;
-}
-
-.photos_div img {
+  }
+  
+  .photos_div img {
     width: 100px;
     height: 100px;
     border: 1px solid;
-}
+  }

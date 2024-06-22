@@ -1,16 +1,15 @@
-import { useSelector } from "react-redux"
-import { photographers, done, getAllPhotographers,selectedCategory } from "../../store/slices/photographers";
+import { useSelector } from "react-redux";
+import { photographers, done, getAllPhotographers, selectedCategory } from "../../store/slices/photographers";
 import { searchPhotographerPage, searchedPhotographers } from "../../store/slices/searchedPhotographerSlice";
 import { useCallback, useEffect, useState } from "react";
 import { useCustomDispatch } from "../../customHooks/customHooks";
 import LoadingGif from "../../../public/LoadingGif/loadingGif";
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDebounce } from "../../customHooks/useDebounce";
 import Pagination from "../../components/Pagination/Pagination";
 import Search from "../../components/Search/Search";
 import PhotographersCategory from "../../components/PhotographersCategory/photographersCategory";
 import Photographer from "../../components/Photographer/Photographer";
-import { useNavigate } from "react-router-dom";
 
 import './style.css';
 
@@ -22,8 +21,11 @@ const Photographers = () => {
     const dispatch = useCustomDispatch();
     const [searchValue, setSearchValue] = useState('');
     const debouncedValue = useDebounce(searchValue, 500);
-    const { page, categoryId } = useParams();
+    const location = useLocation();
     const navigate = useNavigate();
+    const searchParams = new URLSearchParams(location.search);
+    const page = searchParams.get('page') || 1;
+    const categoryId = searchParams.get('categoryId') || null;
     const [activePage, setActivePage] = useState(Number(page) || 1);
     const [filtered, setFiltered] = useState(false);
 
@@ -32,9 +34,9 @@ const Photographers = () => {
     }, [page]);
 
     useEffect(() => {
-        if (categoryId !== undefined && activePage !== undefined) {
+        if (categoryId) {
             dispatch(getAllPhotographers({ id: categoryId, page: activePage }));
-        } else if (activePage !== undefined) {
+        } else {
             dispatch(getAllPhotographers({ page: activePage }));
         }
     }, [activePage, filtered, categoryId, dispatch]);
@@ -73,13 +75,13 @@ const Photographers = () => {
 
     const paginationBtns = definePaginationBtns();
 
-    const handleCategoryChange = (categoryId:number) => {
+    const handleCategoryChange = (categoryId) => {
         setActivePage(1);  
         setFiltered(true);
         if (categoryId) {
-            navigate(`/photographers/${categoryId}/1`);
+            navigate(`/photographers?categoryId=${categoryId}&page=1`);
         } else {
-            navigate(`/photographers/1`);
+            navigate(`/photographers?page=1`);
         }
     };
 
@@ -100,7 +102,7 @@ const Photographers = () => {
                             setSearchValue={setSearchValue}
                         />
                         <div className="photographers">
-                            {photographersToDisplay()?.map((photographer:any) => (
+                            {photographersToDisplay()?.map((photographer) => (
                                 <Photographer key={photographer.id} photographer={photographer} />
                             ))}
                         </div>
