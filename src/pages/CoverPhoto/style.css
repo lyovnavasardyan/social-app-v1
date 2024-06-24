@@ -1,24 +1,28 @@
-.cover-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    max-width: 400px;
-  }
+.container {
+  width: 100%;
+}
   
   .cover-wrapper {
     position: relative;
     margin-bottom: 20px;
   }
+
+  .cover-photo-div {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
   
   .cover-photo {
-    width: 800px;
-    height: 500px;
+    width: 100%;
+    height: 300px;
     border-radius: 8px;
     object-fit: cover;
+    position: absolute;
+    z-index: -2;
   }
   
   .cover-custom-file-upload {
@@ -37,6 +41,7 @@
   
   .file-input {
     display: none;
+    position: absolute;
   }
   
   .cover-file-name {

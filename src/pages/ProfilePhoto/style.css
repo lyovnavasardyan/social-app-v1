@@ -1,23 +1,61 @@
 .profile-photo-container {
+  width: 200px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 20px;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  border: 10px solid #ddd;
+  border-radius: 50%;
   max-width: 400px;
+  position: relative;
 }
 
 .avatar-wrapper {
-  margin-bottom: 20px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 50%;
+  border: 4px solid mediumslateblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .user-avatar {
-  width: 120px;
-  height: 120px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   object-fit: cover;
+  position: relative;
+}
+
+.custom-file-upload {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.5); /* Optional: to make the upload icon more visible */
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.custom-file-upload:hover {
+  opacity: 1;
+}
+
+.custom-file-upload > p {
+  font-size: 100px;
+  font-weight: bold;
+  color: mediumslateblue;
+  pointer-events: none; /* Ensures text inside the label is not clickable */
+}
+
+.file-input {
+  display: none;
 }
 
 .avatar-actions {
@@ -25,17 +63,6 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 20px;
-}
-
-.custom-file-upload {
-  font-size: 16px;
-  color: #007bff;
-  cursor: pointer;
-  margin-bottom: 10px;
-}
-
-.file-input {
-  display: none;
 }
 
 .upload-button {
