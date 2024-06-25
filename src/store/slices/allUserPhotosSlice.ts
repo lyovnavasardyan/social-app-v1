@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSelector, createSlice } from "@reduxjs/toolkit";
 import { fetchData } from "../../api/api";
+import { PhotoError, PhotoSlide } from "../../components/Slide/PhotosSlide/type";
 
 const initialState = {
     photos: [],
     done: false
 }
 
-export const getAllPhotos = createAsyncThunk(
+export const getAllPhotos = createAsyncThunk<PhotoSlide[], void, { rejectValue: PhotoError }>(
     'api/photos',
     async (_, { rejectWithValue }) => {
         try {
@@ -25,7 +26,7 @@ export const getAllPhotos = createAsyncThunk(
 );
 
 
-const allPhotosSlice =  createSlice({
+const allPhotosSlice = createSlice({
     name: 'allPhotosSlice',
     initialState,
     reducers: {
@@ -36,7 +37,7 @@ const allPhotosSlice =  createSlice({
             .addCase(getAllPhotos.pending, (state) => {
                 state.done = false
             })
-            .addCase(getAllPhotos.fulfilled, (state, {payload}) => {
+            .addCase(getAllPhotos.fulfilled, (state, { payload }) => {
                 state.done = true
                 state.photos = payload.data
             })
@@ -46,7 +47,7 @@ const allPhotosSlice =  createSlice({
     },
 })
 
-const mainState = (state:any) => state
+const mainState = (state: any) => state
 
 export const photos = createSelector(mainState, (state) => state.allUserPhotosData.photos)
 export const done = createSelector(mainState, (state) => state?.allUserPhotosData.done)

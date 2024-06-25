@@ -4,8 +4,13 @@ import { useNavigate } from 'react-router-dom'
 
 import './style.css'
 import Slider from 'react-slick'
+import { PhotoSlide } from './type'
 
-const PhotosSlide: React.FC = ({ slidePhotos }) => {
+interface PhotosSlideProps {
+    slidePhotos: PhotoSlide[]
+}
+
+const PhotosSlide: React.FC<PhotosSlideProps> = ({ slidePhotos }) => {
     const navigate = useNavigate()
 
     const settings = {
@@ -16,12 +21,18 @@ const PhotosSlide: React.FC = ({ slidePhotos }) => {
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 1500
-      };
+    };
     return (
         <Slider {...settings}>
             {
-                slidePhotos?.map(photo => {
-                    return <img onClick={() => navigate(`/photographer/${photo.user.id}`)} className="slide-photo" key={photo.id} src={BACKEND_URL + photo.small} alt="" />
+                slidePhotos?.map((photo) => {
+                    return <img
+                        onClick={() => navigate(`/photographer/${photo.user.id}`)}
+                        className="slide-photo"
+                        key={photo.id}
+                        src={BACKEND_URL + photo.small}
+                        alt=""
+                    />
                 })
             }
         </Slider>

@@ -3,14 +3,15 @@ import React, { useEffect } from 'react'
 
 import './style.css'
 import Slide from '../../components/Slide/Slide'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { getAllPhotos, photos } from '../../store/slices/allUserPhotosSlice'
 import PhotosSlide from '../../components/Slide/PhotosSlide/PhotosSlide'
 import { getAllPhotographers, photographers } from '../../store/slices/photographers'
 import PhotographerSlide from '../../components/Slide/PhotographerSlide/PhotographerSlide'
+import { useCustomDispatch } from '../../customHooks/customHooks'
 
 const LandingPage: React.FC = () => {
-  const dispatch = useDispatch()
+  const dispatch = useCustomDispatch()
 
   const allPhotos = useSelector(photos)
   const allPhotographers = useSelector(photographers)
@@ -20,8 +21,8 @@ const LandingPage: React.FC = () => {
     dispatch(getAllPhotographers({page: 1}))
   }, [])
   
-  const slidePhotos = allPhotos?.data?.filter((photo, index) => index < 5)
-  const slidePhotographers = allPhotographers?.data?.filter((photo, index) => index < 15)
+  const slidePhotos = allPhotos?.data?.filter((photo: object, index: number) => index < 5)
+  const slidePhotographers = allPhotographers?.data?.filter((photo: object, index: number) => index < 15)
   
   return (
     <div className="landing_page_div">

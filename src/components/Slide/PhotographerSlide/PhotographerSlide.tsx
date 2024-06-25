@@ -4,8 +4,13 @@ import { BACKEND_URL } from '../../../config/config';
 
 import './style.css'
 import { useNavigate } from 'react-router-dom';
+import { PhotoSlide } from '../PhotosSlide/type';
 
-const PhotographerSlide: React.FC = ({ slidePhotographers }) => {
+interface PhotographerSlideProps {
+    slidePhotographers: PhotoSlide[]
+}
+
+const PhotographerSlide: React.FC<PhotographerSlideProps> = ({ slidePhotographers }) => {
     const navigate = useNavigate()
 
     const settings = {

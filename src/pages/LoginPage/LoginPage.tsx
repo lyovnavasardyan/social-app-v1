@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Rootstate } from '../../store/store';
 import { loginAsync } from '../../store/slices/loginSlice';
 import './style.css';
@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { loginConfig } from '../../config/config';
 import { authSelector,isLoadingSelector } from '../../store/slices/loginSlice';
 import LoadingGif from "../../../public/LoadingGif/loadingGif.tsx"
-import { getPhotos } from '../../store/slices/photosSlice.ts';
+import { useCustomDispatch } from '../../customHooks/customHooks.ts';
 
 
 interface FormValues {
@@ -19,7 +19,7 @@ interface FormValues {
 
 const LoginPage: React.FC = () => {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const dispatch = useCustomDispatch();
     const {title} = loginConfig
     const { error } = useSelector((state: Rootstate) => state.loginData); 
 

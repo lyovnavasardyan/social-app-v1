@@ -5,6 +5,7 @@ import { useCustomDispatch, useCustomSelector } from '../../customHooks/customHo
 import './style.css'
 import ProfilePhoto from '../ProfilePhoto/profilePhoto';
 import 'react-toastify/dist/ReactToastify.css';
+import { Rootstate } from '../../store/store';
 
 const CoverPhoto = () => {
   const dispatch = useCustomDispatch();
@@ -14,7 +15,7 @@ const CoverPhoto = () => {
   const [data, setData] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const { allPhotos } = useCustomSelector((state: RootState) => state.photosData);
+  const { allPhotos } = useCustomSelector((state: Rootstate) => state.photosData);
 
   const BASE_URL = "https://pinetech.org";
 
