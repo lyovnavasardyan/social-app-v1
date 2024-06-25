@@ -46,7 +46,7 @@ const allPhotosSlice =  createSlice({
     },
 })
 
-const mainState = (state) => state
+const mainState = (state:any) => state
 
 export const photos = createSelector(mainState, (state) => state.allUserPhotosData.photos)
 export const done = createSelector(mainState, (state) => state?.allUserPhotosData.done)

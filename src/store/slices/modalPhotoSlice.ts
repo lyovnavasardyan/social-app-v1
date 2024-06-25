@@ -1,6 +1,12 @@
 import { createAsyncThunk, createSlice, createSelector } from "@reduxjs/toolkit";
 import axios from "axios";
 
+
+interface FetchRandomPhotosData {
+    id: number; 
+    categoryId: number; 
+    
+}
 interface ModalPhotoState {
     photos: Array<object>,
     done: boolean
@@ -13,7 +19,7 @@ const initialState: ModalPhotoState = {
 
 export const getRandomPhotos = createAsyncThunk(
     'modal-photos',
-    async (data, { rejectWithValue }) => {
+    async (data: FetchRandomPhotosData) => { 
         try {
             const response = await axios.post(
                 "https://pinetech.org/api/get-random-photos-by-category",
@@ -34,7 +40,7 @@ export const getRandomPhotos = createAsyncThunk(
             throw error;
         }
     }
-)
+);
 
 const ModalPhotoSlice = createSlice({
     name: "modalPhotoSlice",
@@ -49,7 +55,7 @@ const ModalPhotoSlice = createSlice({
                 state.photos = payload.data
                 state.done = true
             })
-            .addCase(getRandomPhotos.rejected, (state, { payload }) => {
+            .addCase(getRandomPhotos.rejected, (state) => {
                 state.done = false
             })
     }

@@ -1,6 +1,10 @@
 import { createAsyncThunk, createSelector, createSlice } from "@reduxjs/toolkit";
 import { fetchData } from "../../api/api";
 
+interface LoginPayload {
+    email: string;
+    password: string;
+}
 
 const initialState = {
     title: 'Login',
@@ -12,7 +16,7 @@ const initialState = {
 
 export const loginAsync = createAsyncThunk(
     'auth/login',
-    async (payload, { rejectWithValue }) => {
+    async (payload:LoginPayload, { rejectWithValue }) => {
         try {
             const response = await fetchData.sendLoginData(payload)
             return response.data;

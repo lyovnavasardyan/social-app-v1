@@ -32,7 +32,7 @@ const searchPhotographersSlice = createSlice({
     },
 });
 
-const mainState = (state) => state;
+const mainState = (state:any) => state;
 
 export const searchedPhotographers = createSelector(mainState, (state) => state.searchedPhotographerData.searchedPhotographers);
 

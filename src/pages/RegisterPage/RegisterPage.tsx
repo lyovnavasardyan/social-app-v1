@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useSelector } from 'react-redux'
-import { Rootstate } from '../../store/store'
 import schema from './registerSchema'
 import RegisterModal from '../../components/RegisterModal/RegisterModal'
 import Modal from '../../components/Modal'
@@ -10,6 +8,7 @@ import './style.css'
 import { useCustomDispatch } from '../../customHooks/customHooks'
 import { registerAsync } from '../../store/slices/registerSlice'
 import { registerConfig } from '../../config/config'
+import { boolean } from 'yup'
 
 
 interface FormValues {
@@ -29,7 +28,7 @@ const RegisterPage: React.FC = () => {
     resolver: yupResolver(schema)
   });
 
-  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+  const onSubmit: SubmitHandler<FormValues> = async (data:any) => {
     try {
       const res = await dispatch(registerAsync(data));
 

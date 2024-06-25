@@ -1,6 +1,20 @@
 import React from 'react'
 
-const Details: React.FC = ({ handleSubmit, onSubmit, error, register, errors }) => {
+interface DetailsProps {
+    handleSubmit:void;
+    onSubmit:void;
+    errors: {
+        name?: { message: string };
+        phone?: { message: string };
+        fb?: { message: string };
+        location?: { message: string };
+        about?: { message: string };
+        instagram?: { message: string };
+    };
+    error?: string;
+}
+
+const Details: React.FC<DetailsProps> = ({ handleSubmit, onSubmit, error, register, errors }) => {
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             {error && <p className="error-message">{error}</p>}
@@ -21,7 +35,7 @@ const Details: React.FC = ({ handleSubmit, onSubmit, error, register, errors }) 
 
                     <h2>Phone</h2>
                     <input
-                        type="number"
+                        type="text"
                         placeholder='Phone...'
                         {...register('phone', {
                             required: "Phone field is required"
@@ -41,7 +55,7 @@ const Details: React.FC = ({ handleSubmit, onSubmit, error, register, errors }) 
 
                     <h2>Location</h2>
                     <input
-                        type="number"
+                        type="text"
                         placeholder='Location...'
                         {...register('location', {
                             required: "Location field is required"
@@ -74,7 +88,7 @@ const Details: React.FC = ({ handleSubmit, onSubmit, error, register, errors }) 
                 </button>
             </div>
         </form>
-    )
-}
+    );
+};
 
-export default Details
+export default Details;

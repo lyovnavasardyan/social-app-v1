@@ -10,7 +10,7 @@ const initialState = {
 
 export const getPhotographerById = createAsyncThunk(
   'photographer/getById',
-  async (data, { rejectWithValue }) => {
+  async (data:Object, { rejectWithValue }) => {
     try {
       const response = await fetchData.getSinglePhotographer(data);
       console.log(response.data);
