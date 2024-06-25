@@ -3,8 +3,10 @@ import Slider from 'react-slick';
 import { BACKEND_URL } from '../../../config/config';
 
 import './style.css'
+import { useNavigate } from 'react-router-dom';
 
 const PhotographerSlide: React.FC = ({ slidePhotographers }) => {
+    const navigate = useNavigate()
 
     const settings = {
         dots: true,
@@ -17,8 +19,9 @@ const PhotographerSlide: React.FC = ({ slidePhotographers }) => {
         <div className='photographers_slide_div'>
             <Slider {...settings}>
             {
-                slidePhotographers?.map(photogrpaher => {
+                slidePhotographers?.map((photogrpaher) => {
                     return <img
+                        onClick={() => navigate(`/photographer/${photogrpaher.id}`)}
                         key={photogrpaher.id}
                         src={BACKEND_URL + photogrpaher.avatar}
                         className='slide-photographer'
