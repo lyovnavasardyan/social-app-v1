@@ -75,7 +75,7 @@ const Photographers = () => {
 
     const paginationBtns = definePaginationBtns();
 
-    const handleCategoryChange = (categoryId) => {
+    const handleCategoryChange = (categoryId:number) => {
         setActivePage(1);  
         setFiltered(true);
         if (categoryId) {

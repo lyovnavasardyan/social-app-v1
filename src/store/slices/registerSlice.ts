@@ -1,22 +1,26 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { fetchData } from "../../api/api";
 
-const initialState = {
-
+interface RegisterPayload {
+    username: string;
+    email: string;
+    password: string;
 }
 
-export const registerAsync =  createAsyncThunk (
+const initialState = {
+    
+};
+
+export const registerAsync = createAsyncThunk(
     'auth/register',
-    async (payload, { rejectWithValue }) => {
+    async (payload: RegisterPayload, { rejectWithValue }) => {
         try {
-            const response = await fetchData.sendRegisterData(payload)
+            const response = await fetchData.sendRegisterData(payload);
             return response.data;
-        } catch (error:any) {
-           
+        } catch (error: any) {
             if (error.response && error.response.data) {
                 return rejectWithValue(error.response.data);
             }
-           
             return rejectWithValue({ message: 'An unknown error occurred' });
         }
     }

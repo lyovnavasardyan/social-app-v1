@@ -4,10 +4,15 @@ import { useNavigate } from "react-router-dom";
 
 import './style.css';
 
-const PhotographersCategory = ({ setFiltered, onCategoryChange }) => {
+interface PhotographersCategoryProps {
+    setFiltered: (filtered: boolean) => void;
+    onCategoryChange: (id: number | null) => void;
+}
+
+const PhotographersCategory: React.FC<PhotographersCategoryProps> = ({ setFiltered, onCategoryChange }) => {
     const navigate = useNavigate();
-    const [categories, setCategories] = useState([]);
-    const [activeCategory, setActiveCategory] = useState(-1);
+    const [categories, setCategories] = useState<any[]>([]); 
+    const [activeCategory, setActiveCategory] = useState<number>(-1);
 
     useEffect(() => {
         const fetchCategories = async () => {
@@ -21,7 +26,7 @@ const PhotographersCategory = ({ setFiltered, onCategoryChange }) => {
         fetchCategories();
     }, []);
 
-    const fetchSelectedCategory = (id) => {
+    const fetchSelectedCategory = (id: number) => {
         setFiltered(true);
         setActiveCategory(id);
         onCategoryChange(id);  

@@ -1,4 +1,3 @@
-import React from 'react'
 import { buttonsInfo } from '../../../config/config'
 import { useNavigate } from 'react-router-dom'
 
