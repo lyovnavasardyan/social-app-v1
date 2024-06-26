@@ -79,11 +79,14 @@ const PhotographerProfile = () => {
         })}
       </div>
       <div className='pagination_div'>
-        <Button
-          text={'More'}
-          size='small'
-          onClick={() => setCurrentPage(currentPage + 1)}
+      {(photosLastPage !== 1 && currentPage !== photosLastPage) && (
+       <Button
+        text={'More'}
+        size='small'
+        onClick={() => setCurrentPage(currentPage + 1)}
         />
+        )}
+      
       </div>
       <Modal
         shouldShow={showModal}
