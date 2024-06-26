@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPhotographerById, photographer, photos, loading, page, lastPage } from '../../store/slices/singlePhotographerSlice';
+import { getPhotographerById, photographer, photos, loading, lastPage, getPhotographerByIdPhotos } from '../../store/slices/singlePhotographerSlice';
 import './style.css';
 import { BACKEND_URL } from '../../config/config';
 import Modal from '../../components/Modal';
@@ -9,6 +9,7 @@ import PhotoModal from '../../components/PhotoModal/PhotoModal';
 import RandomPhotos from '../../components/RandomPhotos/randomPhotos';
 import { getRandomPhotos } from '../../store/slices/modalPhotoSlice';
 import Image from '../../components/SmallComponents/Image/Image';
+import Button from '../../components/SmallComponents/Button/Button';
 
 
 const PhotographerProfile = () => {
@@ -17,6 +18,7 @@ const PhotographerProfile = () => {
   const clickedPhotographer = useSelector(photographer);
   const ownPhotos = useSelector(photos);
   const isloading = useSelector(loading);
+  const photosLastPage = useSelector(lastPage)
 
   const [photoModalInfo, setPhotoModalInfo] = useState({ photoData: {} })
   const [showModal, setShowModal] = useState(false);
@@ -24,13 +26,19 @@ const PhotographerProfile = () => {
 
   const obj = { userId, currentPage: currentPage }
 
-  
+
 
   useEffect(() => {
-    if (currentPage >= 1 && currentPage <= 5) {
-      dispatch(getPhotographerById(obj));
+    dispatch(getPhotographerById(obj));
+  }, []);
+
+  useEffect(() => {
+    if (currentPage >= 1 && currentPage <= photosLastPage) {
+      dispatch(getPhotographerByIdPhotos(obj))
     }
-  }, [userId, currentPage]);
+  }, [userId, currentPage])
+
+  console.log(photosLastPage);
 
 
   if (isloading) {
@@ -39,7 +47,7 @@ const PhotographerProfile = () => {
 
   if (!clickedPhotographer) {
     return <div>No data found</div>;
-  }  
+  }
 
   return (
     <div className="photographer-profile">
@@ -71,16 +79,11 @@ const PhotographerProfile = () => {
         })}
       </div>
       <div className='pagination_div'>
-        <button onClick={() => {
-          if(currentPage > 1) {
-            setCurrentPage(() => currentPage - 1)
-          }
-        }} className='prev'>Prev</button>
-        <button onClick={() => {
-          if(currentPage < 5) {
-            setCurrentPage(() => currentPage + 1)
-          }
-        }} className='next'>Next</button>
+        <Button
+          text={'More'}
+          size='small'
+          onClick={() => setCurrentPage(currentPage + 1)}
+        />
       </div>
       <Modal
         shouldShow={showModal}
